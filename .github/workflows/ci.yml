@@ -48,3 +48,24 @@ jobs:
       # 7️⃣ ESLint check
       - name: Run ESLint
         run: yarn eslint . --ext .ts,.tsx
+
+  ai-review:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      # 1️⃣ Checkout code
+      - uses: actions/checkout@v3
+
+      # 2️⃣ Get list of changed files
+      - name: Get changed files
+        id: files
+        run: |
+          echo "changed=$(git diff --name-only origin/${{ github.base_ref }} HEAD | grep -E '\.(ts|tsx|js|jsx)$' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+
+      # 3️⃣ Run AI PR review only on changed files
+      - name: AI Code Review
+        uses: weide-zhou/code-review-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          files: ${{ steps.files.outputs.changed }}
+          max-lines: 300
