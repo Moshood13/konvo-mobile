@@ -63,9 +63,8 @@ jobs:
           echo "changed=$(git diff --name-only origin/${{ github.base_ref }} HEAD | grep -E '\.(ts|tsx|js|jsx)$' | tr '\n' ' ')" >> $GITHUB_OUTPUT
 
       # 3️⃣ Run AI PR review only on changed files
-      - name: AI Code Review
-        uses: weide-zhou/code-review-action@v1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          files: ${{ steps.files.outputs.changed }}
-          max-lines: 300
+      - - name: AI Code Reviewer
+          uses: villesau/ai-code-review-action@v2.7.0
+          with:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
