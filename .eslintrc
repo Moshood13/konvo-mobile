@@ -1,0 +1,73 @@
+{
+	"root": true,
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": 2018,
+		"sourceType": "module",
+		"project": "./tsconfig.json"
+	},
+	"plugins": ["@typescript-eslint", "testing-library"],
+	"ignorePatterns": ["**/typings", "**/assets"],
+	"rules": {
+		"@typescript-eslint/no-var-requires": 0,
+		"@typescript-eslint/no-floating-promises": ["error", {}],
+		// "multiline-comment-style": ["error", "starred-block"],
+		"line-comment-position": ["error", { "position": "above" }],
+		"spaced-comment": [
+			"error",
+			"always",
+			{
+				"block": {
+					"balanced": true
+				}
+			}
+		],
+		"object-curly-spacing": ["error", "always"],
+		"semi": ["error", "always"],
+		"key-spacing": [
+			1,
+			{
+				"beforeColon": false,
+				"afterColon": true
+			}
+		],
+		"lines-around-comment": ["off"],
+		"no-multiple-empty-lines": [
+			"error",
+			{
+				"max": 1,
+				"maxEOF": 0
+			}
+		],
+		"no-trailing-spaces": [
+			"error",
+			{
+				"ignoreComments": false,
+				"skipBlankLines": false
+			}
+		],
+		"eol-last": ["error", "always"],
+		// testing-library
+		"testing-library/await-async-queries": "error",
+		"testing-library/no-await-sync-queries": "error",
+		"testing-library/no-debugging-utils": "warn",
+		"testing-library/no-dom-import": "off",
+		"testing-library/prefer-screen-queries": "off",
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended",
+		"universe/native",
+		"prettier",
+		"plugin:react-hooks/recommended",
+		"plugin:testing-library/react"
+	],
+	"overrides": [
+		// {
+		// 	// enable eslint-plugin-testing-library rules or preset only for matching testing files!
+		// 	"files": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
+		// 	"extends": ["plugin:testing-library/react"]
+		// }
+	]
+}
