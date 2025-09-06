@@ -1165,7 +1165,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:9.35.0":
+"@eslint/js@npm:9.35.0, @eslint/js@npm:^9.35.0":
   version: 9.35.0
   resolution: "@eslint/js@npm:9.35.0"
   checksum: 10c0/d40fe38724bc76c085c0b753cdf937fa35c0d6807ae76b2632e3f5f66c3040c91adcf1aff2ce70b4f45752e60629fadc415eeec9af3be3c274bae1cac54b9840
@@ -6813,6 +6813,7 @@ __metadata:
   resolution: "pennysave-mobile@workspace:."
   dependencies:
     "@babel/core": "npm:^7.25.2"
+    "@eslint/js": "npm:^9.35.0"
     "@hookform/resolvers": "npm:^5.2.1"
     "@react-navigation/bottom-tabs": "npm:^7.4.7"
     "@react-navigation/native": "npm:^7.1.17"
