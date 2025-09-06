@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop, main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2️⃣ Setup Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      # 3️⃣ Enable Corepack for Yarn
+      - name: Enable Corepack
+        run: corepack enable
+
+      # 4️⃣ Cache Yarn dependencies
+      - name: Cache Yarn
+        uses: actions/cache@v3
+        with:
+          path: |
+            .yarn/cache
+            .yarn/unplugged
+            .yarn/build-state.yml
+          key: yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            yarn-
+
+      # 5️⃣ Install dependencies
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      # 6️⃣ TypeScript check
+      - name: Run TypeScript check
+        run: yarn tsc --noEmit
+
+      # 7️⃣ ESLint check
+      - name: Run ESLint
+        run: yarn eslint . --ext .ts,.tsx
