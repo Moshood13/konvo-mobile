@@ -40,7 +40,7 @@ jobs:
         run: yarn install --immutable
   
       - name: Verify Expo configuration
-        run: npx expo doctor
+        run: npx expo-doctor
 
       - name: Run TypeScript check
         run: yarn tsc --noEmit
