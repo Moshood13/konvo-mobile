@@ -1,6 +1,10 @@
 name: Build
 
 on:
+  push:
+    branches:
+      - develop
+      - main
   workflow_dispatch:
     inputs:
       platform:
@@ -84,6 +88,15 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --immutable
+
+      - name: Determine build profile
+        id: profile
+        run: |
+          if [[ "${GITHUB_REF##*/}" == "main" ]]; then
+            echo "profile=production" >> $GITHUB_OUTPUT
+          else
+            echo "profile=development" >> $GITHUB_OUTPUT
+          fi
 
       - name: Run EAS build
         run: yarn dlx eas-cli@latest build --platform ${{ github.event.inputs.platform }} --profile ${{ github.event.inputs.profile }} --non-interactive
