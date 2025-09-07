@@ -38,7 +38,7 @@ jobs:
 
       - name: Use Yarn v4.9.4
         run: corepack prepare yarn@4.9.4 --activate
-      
+
       - name: Check Yarn version
         run: yarn --version
 
