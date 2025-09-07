@@ -25,22 +25,24 @@ jobs:
   lint-typescript-prettier:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 20
 
-      - name: Enable Corepack
-        run: corepack enable
+      - name: Setup Corepack + Yarn
+        run: |
+          corepack enable
+          corepack prepare yarn@4.9.4 --activate
 
-      - name: Prepare Yarn
-        run: corepack prepare yarn@4.9.4 --activate
-
-      - name: Check Yarn version
-        run: yarn --version
+      - name: Cache Yarn
+        uses: actions/cache@v3
+        with:
+          path: .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
       - name: Install dependencies
         run: yarn install --immutable
@@ -61,31 +63,27 @@ jobs:
     runs-on: ubuntu-latest
     needs: lint-typescript-prettier
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 20
 
-      - name: Enable Corepack
-        run: corepack enable
+      - name: Setup Corepack + Yarn
+        run: |
+          corepack enable
+          corepack prepare yarn@4.9.4 --activate
 
-      - name: Use Yarn v4.9.4
-        run: corepack prepare yarn@4.9.4 --activate
-
-      - name: Check Yarn version
-        run: yarn --version
-
-      - name: Install build tools
-        run: sudo apt-get update && sudo apt-get install -y build-essential python3
+      - name: Cache Yarn
+        uses: actions/cache@v3
+        with:
+          path: .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
       - name: Install dependencies
         run: yarn install --immutable
-
-      - name: Verify EAS CLI availability
-        run: yarn dlx eas-cli@latest --version
 
       - name: Run EAS build
         run: yarn dlx eas-cli@latest build --platform ${{ github.event.inputs.platform }} --profile ${{ github.event.inputs.profile }} --non-interactive
