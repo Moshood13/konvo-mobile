@@ -1,4 +1,4 @@
-name: mobile build
+name: Build
 
 on:
   workflow_dispatch:
@@ -25,13 +25,16 @@ jobs:
   lint-typescript-prettier:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
-      - run: corepack enable
+
+      - name: Enable Corepack (Yarn Berry)
+        run: corepack enable
 
       - name: Install dependencies
         run: yarn install --immutable
@@ -46,14 +49,14 @@ jobs:
         run: yarn eslint . --ext .ts,.tsx
 
       - name: Run Prettier
-        run: yarn prettier --check
-        
+        run: yarn prettier --check .
 
-eas-build:
+  eas-build:
     runs-on: ubuntu-latest
     needs: lint-typescript-prettier
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -63,12 +66,10 @@ eas-build:
       - name: Install dependencies
         run: yarn install --immutable
 
-      - name: Install EAS CLI
-        run: yarn global add eas-cli
+      - name: Verify EAS CLI availability
+        run: yarn dlx eas-cli@latest --version
 
       - name: Run EAS build
         run: yarn dlx eas-cli@latest build --platform ${{ github.event.inputs.platform }} --profile ${{ github.event.inputs.profile }} --non-interactive
-
-    env:
-      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
