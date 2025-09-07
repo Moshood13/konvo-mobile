@@ -16,14 +16,11 @@ export default [
         sourceType: "module",
         ecmaFeatures: { jsx: true },
       },
-      env: {
-        es2021: true,
-        node: true,
-        browser: true,
-      },
       globals: {
         console: "readonly",
         process: "readonly",
+        window: "readonly",
+        document: "readonly",
         __dirname: "readonly",
       },
     },
@@ -34,13 +31,10 @@ export default [
     rules: {
       "react/react-in-jsx-scope": "off",
       "react/prop-types": "off",
-
-      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
-
       "no-console": "off",
-      "no-undef": "off",
-      "semi": ["error", "always"],
-      "quotes": ["error", "double"],
+      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+      semi: ["error", "always"],
+      quotes: ["error", "double"],
     },
   },
 ];
