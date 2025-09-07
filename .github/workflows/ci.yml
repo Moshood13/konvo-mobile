@@ -36,8 +36,11 @@ jobs:
       - name: Enable Corepack (Yarn Berry)
         run: corepack enable
 
-      - name: Set Yarn version
+      - name: Use Yarn v4.9.4
         run: corepack prepare yarn@4.9.4 --activate
+      
+      - name: Check Yarn version
+        run: yarn --version
 
       - name: Install dependencies
         run: yarn install --immutable
