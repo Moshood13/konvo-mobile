@@ -5,13 +5,19 @@ export default ({ config }) => {
 
 	let appName = "Penny Save (dev)";
 	let icon = "./assets/icon-dev.png";
+	let androidPackage = "com.pennysave.dev";
+	let iosBundleId = "com.pennysave.dev";
 
 	if (appEnv === "staging") {
 		appName = "Penny Save (staging)";
 		icon = "./assets/icon-staging.png";
+		androidPackage = "com.pennysave.staging";
+		iosBundleId = "com.pennysave.staging";
 	} else if (appEnv === "production") {
 		appName = "Penny Save";
 		icon = "./assets/icon.png";
+		androidPackage = "com.pennysave";
+		iosBundleId = "com.pennysave";
 	}
 
 	return {
@@ -20,7 +26,7 @@ export default ({ config }) => {
 		slug: "pennysave-mobile",
 		version: "1.0.0",
 		orientation: "portrait",
-		icon: icon,
+		icon,
 		scheme: "pennysave",
 		platforms: ["ios", "android"],
 		updates: {
@@ -32,12 +38,14 @@ export default ({ config }) => {
 			backgroundColor: "#ffffff",
 		},
 		android: {
+			package: androidPackage,
 			adaptiveIcon: {
 				foregroundImage: "./assets/adaptive-icon.png",
 				backgroundColor: "#ffffff",
 			},
 		},
 		ios: {
+			bundleIdentifier: iosBundleId,
 			supportsTablet: true,
 		},
 		extra: {
