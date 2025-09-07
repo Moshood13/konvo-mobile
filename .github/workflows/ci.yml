@@ -5,6 +5,7 @@ on:
     branches:
       - develop
       - main
+  pull_request:
   workflow_dispatch:
     inputs:
       platform:
@@ -64,6 +65,7 @@ jobs:
         run: yarn prettier --check .
 
   eas-build:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     needs: lint-typescript-prettier
     steps:
