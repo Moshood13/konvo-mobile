@@ -1,32 +1,74 @@
-name: CI
+name: mobile build
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-    branches: [develop, main]
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: 'Platform to build'
+        required: true
+        default: 'android'
+        type: choice
+        options:
+          - android
+          - ios
+      profile:
+        description: 'EAS build profile'
+        required: true
+        default: 'development'
+        type: choice
+        options:
+          - development
+          - preview
+          - production
 
 jobs:
-  build:
+  lint-typescript-prettier:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 20
       - run: corepack enable
 
-      - uses: actions/cache@v3
+      - name: Install dependencies
+        run: yarn install --immutable
+  
+      - name: Verify Expo configuration
+        run: npx expo doctor
+
+      - name: Run TypeScript check
+        run: yarn tsc --noEmit
+
+      - name: Run ESLint
+        run: yarn eslint . --ext .ts,.tsx
+
+      - name: Run Prettier
+        run: yarn prettier --check
+        
+
+eas-build:
+    runs-on: ubuntu-latest
+    needs: lint-typescript-prettier
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          path: |
-            .yarn/cache
-            .yarn/unplugged
-            .yarn/build-state.yml
-          key: yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: yarn-
+          node-version: 20
 
-      - run: yarn install --immutable
+      - name: Install dependencies
+        run: yarn install --immutable
 
-      - run: yarn tsc --noEmit
+      - name: Install EAS CLI
+        run: yarn global add eas-cli
 
-      - run: yarn eslint . --ext .ts,.tsx
+      - name: Run EAS build
+        run: yarn dlx eas-cli@latest build --platform ${{ github.event.inputs.platform }} --profile ${{ github.event.inputs.profile }} --non-interactive
+
+    env:
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
