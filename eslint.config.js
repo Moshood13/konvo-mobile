@@ -2,6 +2,7 @@ import js from "@eslint/js";
 import eslintPluginReact from "eslint-plugin-react";
 import tsParser from "@typescript-eslint/parser";
 import tsPlugin from "@typescript-eslint/eslint-plugin";
+import globals from "globals";
 
 export default [
 	js.configs.recommended,
@@ -15,11 +16,7 @@ export default [
 				ecmaFeatures: { jsx: true },
 			},
 		},
-		env: {
-			es2021: true,
-			node: true,
-			browser: true,
-		},
+		globals: { ...globals.browser, ...globals.node },
 		plugins: {
 			"@typescript-eslint": tsPlugin,
 			react: eslintPluginReact,
