@@ -4,17 +4,17 @@ on:
   workflow_dispatch:
     inputs:
       platform:
-        description: 'Platform to build'
+        description: "Platform to build"
         required: true
-        default: 'android'
+        default: "android"
         type: choice
         options:
           - android
           - ios
       profile:
-        description: 'EAS build profile'
+        description: "EAS build profile"
         required: true
-        default: 'development'
+        default: "development"
         type: choice
         options:
           - development
@@ -38,7 +38,7 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --immutable
-  
+
       - name: Verify Expo configuration
         run: npx expo-doctor
 
