@@ -41,7 +41,10 @@ export default ({ config }) => {
 			supportsTablet: true,
 		},
 		extra: {
-			appEnv: appEnv,
+			appEnv,
+			eas: {
+				projectId: "c47e297e-4145-4d47-935d-bd1ecc0367fc",
+			},
 		},
 	};
 };
