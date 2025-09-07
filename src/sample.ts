@@ -1,7 +1,7 @@
 const message = "Hello World"
 
-function greet(name) {
+function greet(name: string) {
   console.log("Hello " + name)
 }
 
-greet(42)
+greet(message)

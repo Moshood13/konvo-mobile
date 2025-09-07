@@ -1,8 +1,8 @@
-name: CI + AI Code Review
+name: CI
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, reopened]
     branches: [develop, main]
 
 jobs:
@@ -30,4 +30,3 @@ jobs:
       - run: yarn tsc --noEmit
 
       - run: yarn eslint . --ext .ts,.tsx
-      
