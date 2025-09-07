@@ -33,11 +33,8 @@ jobs:
         with:
           node-version: 20
 
-      - name: Enable Corepack (Yarn Berry)
-        run: corepack enable
-
-      - name: Use Yarn v4.9.4
-        run: corepack prepare yarn@4.9.4 --activate
+      - name: Install Yarn v4
+        run: npm install -g yarn@4.9.4
 
       - name: Check Yarn version
         run: yarn --version
