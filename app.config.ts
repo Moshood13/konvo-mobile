@@ -52,7 +52,7 @@ export default ({ config }) => {
 		extra: {
 			appEnv,
 			eas: {
-				projectId: "b78e7a99-89ea-49ca-ba7a-e96c678d826c",
+				projectId: "ee44161a-3f3c-477b-b245-25a599638661",
 			},
 		},
 	};
