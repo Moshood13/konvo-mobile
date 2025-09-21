@@ -3,31 +3,31 @@ import "dotenv/config";
 export default ({ config }) => {
 	let appEnv = process.env.APP_ENV || "development";
 
-	let appName = "Penny Save (dev)";
-	let icon = "./assets/icon-dev.png";
-	let androidPackage = "com.pennysave.dev";
-	let iosBundleId = "com.pennysave.dev";
+	let appName = "Konvo (dev)";
+	let icon = "./assets/icon.png";
+	let androidPackage = "com.konvo.dev";
+	let iosBundleId = "com.konvo.dev";
 
 	if (appEnv === "staging") {
-		appName = "Penny Save (staging)";
-		icon = "./assets/icon-staging.png";
-		androidPackage = "com.pennysave.staging";
-		iosBundleId = "com.pennysave.staging";
-	} else if (appEnv === "production") {
-		appName = "Penny Save";
+		appName = "konvo (staging)";
 		icon = "./assets/icon.png";
-		androidPackage = "com.pennysave";
-		iosBundleId = "com.pennysave";
+		androidPackage = "com.konvo.staging";
+		iosBundleId = "com.konvo.staging";
+	} else if (appEnv === "production") {
+		appName = "Konvo";
+		icon = "./assets/icon.png";
+		androidPackage = "com.konvo";
+		iosBundleId = "com.konvo";
 	}
 
 	return {
 		...config,
 		name: appName,
-		slug: "pennysave-mobile",
+		slug: "Konvo",
 		version: "1.0.0",
 		orientation: "portrait",
 		icon,
-		scheme: "pennysave",
+		scheme: "konvo",
 		platforms: ["ios", "android"],
 		updates: {
 			fallbackToCacheTimeout: 0,
