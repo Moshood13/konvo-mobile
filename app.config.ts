@@ -23,7 +23,7 @@ export default ({ config }) => {
 	return {
 		...config,
 		name: appName,
-		slug: "Konvo",
+		slug: "konvo",
 		version: "1.0.0",
 		owner: "mosh1234",
 		orientation: "portrait",
