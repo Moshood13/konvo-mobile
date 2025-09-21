@@ -52,7 +52,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: yarn install --ignore-optional --immutable
+        run: yarn install --immutable
 
       - name: Verify Expo configuration
         run: npx expo-doctor
@@ -93,7 +93,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: yarn install --ignore-optional --immutable
+        run: yarn install --immutable
 
       - name: Determine build profile
         id: profile
