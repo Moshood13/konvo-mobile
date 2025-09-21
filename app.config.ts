@@ -25,6 +25,7 @@ export default ({ config }) => {
 		name: appName,
 		slug: "Konvo",
 		version: "1.0.0",
+		owner: "mosh1234",
 		orientation: "portrait",
 		icon,
 		scheme: "konvo",
@@ -51,7 +52,7 @@ export default ({ config }) => {
 		extra: {
 			appEnv,
 			eas: {
-				projectId: "c47e297e-4145-4d47-935d-bd1ecc0367fc",
+				projectId: "b78e7a99-89ea-49ca-ba7a-e96c678d826c",
 			},
 		},
 	};
