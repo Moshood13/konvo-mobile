@@ -5819,6 +5819,49 @@ __metadata:
   languageName: node
   linkType: hard
 
+"konvo@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "konvo@workspace:."
+  dependencies:
+    "@babel/core": "npm:^7.25.2"
+    "@eslint/js": "npm:^9.35.0"
+    "@hookform/resolvers": "npm:^5.2.1"
+    "@react-navigation/bottom-tabs": "npm:^7.4.7"
+    "@react-navigation/native": "npm:^7.1.17"
+    "@react-navigation/native-stack": "npm:^7.3.26"
+    "@reduxjs/toolkit": "npm:^2.9.0"
+    "@tanstack/react-query": "npm:^5.87.1"
+    "@types/react": "npm:~19.0.10"
+    "@types/react-native-get-random-values": "npm:^1"
+    "@typescript-eslint/eslint-plugin": "npm:^8.42.0"
+    "@typescript-eslint/parser": "npm:^8.42.0"
+    axios: "npm:^1.11.0"
+    date-fns: "npm:^4.1.0"
+    eslint: "npm:^9.35.0"
+    eslint-config-prettier: "npm:^10.1.8"
+    eslint-plugin-react: "npm:^7.37.5"
+    eslint-plugin-react-hooks: "npm:^5.2.0"
+    expo: "npm:~53.0.22"
+    expo-dev-client: "npm:~5.2.4"
+    expo-status-bar: "npm:~2.2.3"
+    prettier: "npm:^3.6.2"
+    react: "npm:19.0.0"
+    react-hook-form: "npm:^7.62.0"
+    react-native: "npm:0.79.5"
+    react-native-gesture-handler: "npm:~2.24.0"
+    react-native-get-random-values: "npm:^1.11.0"
+    react-native-paper: "npm:^5.14.5"
+    react-native-reanimated: "npm:~3.17.4"
+    react-native-safe-area-context: "npm:5.4.0"
+    react-native-screens: "npm:~4.11.1"
+    react-native-vector-icons: "npm:^10.3.0"
+    react-redux: "npm:^9.2.0"
+    typescript: "npm:~5.8.3"
+    uuid: "npm:^12.0.0"
+    yup: "npm:^1.7.0"
+  languageName: unknown
+  linkType: soft
+
 "lan-network@npm:^0.1.6":
   version: 0.1.7
   resolution: "lan-network@npm:0.1.7"
@@ -6962,49 +7005,6 @@ __metadata:
   checksum: 10c0/32a13711a2a505616ae1cc1b5076801e453e7aae6ac40ab55b388bb91b9d0547a52f5aaceff710ea400205f18691120d4431e520afbe4266b836fadede15872d
   languageName: node
   linkType: hard
-
-"pennysave-mobile@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "pennysave-mobile@workspace:."
-  dependencies:
-    "@babel/core": "npm:^7.25.2"
-    "@eslint/js": "npm:^9.35.0"
-    "@hookform/resolvers": "npm:^5.2.1"
-    "@react-navigation/bottom-tabs": "npm:^7.4.7"
-    "@react-navigation/native": "npm:^7.1.17"
-    "@react-navigation/native-stack": "npm:^7.3.26"
-    "@reduxjs/toolkit": "npm:^2.9.0"
-    "@tanstack/react-query": "npm:^5.87.1"
-    "@types/react": "npm:~19.0.10"
-    "@types/react-native-get-random-values": "npm:^1"
-    "@typescript-eslint/eslint-plugin": "npm:^8.42.0"
-    "@typescript-eslint/parser": "npm:^8.42.0"
-    axios: "npm:^1.11.0"
-    date-fns: "npm:^4.1.0"
-    eslint: "npm:^9.35.0"
-    eslint-config-prettier: "npm:^10.1.8"
-    eslint-plugin-react: "npm:^7.37.5"
-    eslint-plugin-react-hooks: "npm:^5.2.0"
-    expo: "npm:~53.0.22"
-    expo-dev-client: "npm:~5.2.4"
-    expo-status-bar: "npm:~2.2.3"
-    prettier: "npm:^3.6.2"
-    react: "npm:19.0.0"
-    react-hook-form: "npm:^7.62.0"
-    react-native: "npm:0.79.5"
-    react-native-gesture-handler: "npm:~2.24.0"
-    react-native-get-random-values: "npm:^1.11.0"
-    react-native-paper: "npm:^5.14.5"
-    react-native-reanimated: "npm:~3.17.4"
-    react-native-safe-area-context: "npm:5.4.0"
-    react-native-screens: "npm:~4.11.1"
-    react-native-vector-icons: "npm:^10.3.0"
-    react-redux: "npm:^9.2.0"
-    typescript: "npm:~5.8.3"
-    uuid: "npm:^12.0.0"
-    yup: "npm:^1.7.0"
-  languageName: unknown
-  linkType: soft
 
 "picocolors@npm:^1.0.0, picocolors@npm:^1.1.1":
   version: 1.1.1
