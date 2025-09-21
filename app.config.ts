@@ -34,7 +34,7 @@ export default ({ config }) => {
 			fallbackToCacheTimeout: 0,
 		},
 		splash: {
-			image: "./assets/splash.png",
+			image: "./assets/splash-icon.png",
 			resizeMode: "contain",
 			backgroundColor: "#ffffff",
 		},
