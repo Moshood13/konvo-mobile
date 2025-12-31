@@ -2,7 +2,7 @@ import { useFonts } from "expo-font";
 import { FontsConstants } from "../constants";
 
 export const useCustomFont = () => {
-	const [isLoaded] = useFonts({
+	const [isLoaded, error] = useFonts({
 		[FontsConstants.brFirma.thin]: require("../assets/fonts/BRFirma/BRFirma-Thin.ttf"),
 		[FontsConstants.brFirma.extraLight]: require("../assets/fonts/BRFirma/BRFirma-ExtraLight.ttf"),
 		[FontsConstants.brFirma.light]: require("../assets/fonts/BRFirma/BRFirma-Light.ttf"),
@@ -13,5 +13,5 @@ export const useCustomFont = () => {
 		[FontsConstants.brFirma.black]: require("../assets/fonts/BRFirma/BRFirma-Black.ttf"),
 	});
 
-	return isLoaded;
+	return { isLoaded, error };
 };

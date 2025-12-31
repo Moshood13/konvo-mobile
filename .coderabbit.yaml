@@ -1,2 +1,4 @@
-docstring:
-  enabled: false
++reviews:
++  finishing_touches:
++    docstrings:
++      enabled: false
