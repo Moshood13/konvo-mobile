@@ -1,0 +1,1 @@
+export { FontsConstants } from "./fonts";
