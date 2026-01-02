@@ -1,2 +1,21 @@
-require('ts-node/register');
-module.exports = require('./metro.config.ts');
+const { getDefaultConfig } = require("@expo/metro-config");
+const { withSentryConfig } = require("@sentry/react-native/metro");
+const path = require("path");
+
+const config = getDefaultConfig(__dirname);
+const { transformer, resolver } = config;
+
+config.transformer = {
+	...transformer,
+	babelTransformerPath: require.resolve(
+		"react-native-svg-transformer"
+	),
+};
+
+config.resolver = {
+	...resolver,
+	assetExts: resolver.assetExts.filter((ext) => ext !== "svg"),
+	sourceExts: [...resolver.sourceExts, "svg"],
+};
+
+module.exports = withSentryConfig(config);
