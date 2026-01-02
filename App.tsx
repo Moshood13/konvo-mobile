@@ -1,11 +1,12 @@
 import { StyleSheet, View } from "react-native";
-import { SplashScreen } from "./src/screens";
+import { SignInScreen } from "./src/screens";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
 	return (
-		<View style={styles.container}>
-			<SplashScreen />
-		</View>
+		<SafeAreaProvider>
+			<SignInScreen />
+		</SafeAreaProvider>
 	);
 }
 
