@@ -3,7 +3,6 @@ import {
 	StatusBar,
 	StyleSheet,
 	View,
-	Platform,
     StyleProp,
     ViewStyle,
 } from "react-native";

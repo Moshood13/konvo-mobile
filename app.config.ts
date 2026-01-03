@@ -1,7 +1,7 @@
 import "dotenv/config";
 
 export default ({ config }) => {
-	let appEnv = process.env.APP_ENV || "development";
+	const appEnv = process.env.APP_ENV || "development";
 
 	let appName = "Konvo (dev)";
 	let icon = "./assets/konvo-icon.png";

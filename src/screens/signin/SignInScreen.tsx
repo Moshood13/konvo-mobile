@@ -1,4 +1,4 @@
-import { StatusBar, Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import {Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { MainContainer } from "../../components";
 import Svg, { Path } from "react-native-svg";
 

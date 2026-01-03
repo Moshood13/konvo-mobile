@@ -1,3 +1,4 @@
+/* global require */
 import { useFonts } from "expo-font";
 import { FontsConstants } from "../constants";
 
