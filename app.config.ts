@@ -19,7 +19,7 @@ export default ({ config }) => {
 		androidPackage = "com.konvo";
 		iosBundleId = "com.konvo";
 	}
-	
+
 	return {
 		...config,
 		name: appName,
