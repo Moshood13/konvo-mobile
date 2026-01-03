@@ -1,11 +1,5 @@
 import { FC, ReactNode } from "react";
-import {
-	StatusBar,
-	StyleSheet,
-	View,
-    StyleProp,
-    ViewStyle,
-} from "react-native";
+import { StatusBar, StyleSheet, View, StyleProp, ViewStyle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ColorConstants } from "../../constants/colors";
 import { ColorTheme } from "../../constants";
@@ -15,11 +9,8 @@ interface MainContainerProps {
 	rootContainerStyle?: StyleProp<ViewStyle>;
 }
 
-export const MainContainer: FC<MainContainerProps> = ({
-	children,
-	rootContainerStyle,
-}) => {
-    const insets = useSafeAreaInsets()
+export const MainContainer: FC<MainContainerProps> = ({ children, rootContainerStyle }) => {
+	const insets = useSafeAreaInsets();
 	return (
 		<>
 			<StatusBar
@@ -27,7 +18,13 @@ export const MainContainer: FC<MainContainerProps> = ({
 				backgroundColor={ColorTheme.mainContainer.backgroundColor}
 			/>
 
-			<View style={[styles.container, { flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom }, rootContainerStyle]}>
+			<View
+				style={[
+					styles.container,
+					{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom },
+					rootContainerStyle,
+				]}
+			>
 				{children}
 			</View>
 		</>
@@ -37,6 +34,6 @@ export const MainContainer: FC<MainContainerProps> = ({
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: ColorConstants.white
+		backgroundColor: ColorConstants.white,
 	},
 });
