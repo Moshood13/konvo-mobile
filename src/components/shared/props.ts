@@ -7,7 +7,7 @@ export interface SimpleTextProps {
 }
 
 export interface TextProps {
-    text: string;
-    style: StyleProp<TextStyle>;
-    numberOfLines?: number;
+	text: string;
+	style: StyleProp<TextStyle>;
+	numberOfLines?: number;
 }

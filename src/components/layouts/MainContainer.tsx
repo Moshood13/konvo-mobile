@@ -16,15 +16,7 @@ export const MainContainer: FC<MainContainerProps> = ({ children, rootContainerS
 				backgroundColor={ColorTheme.mainContainer.backgroundColor}
 			/>
 
-			<View
-				style={[
-					styles.container,
-					{ flex: 1},
-					rootContainerStyle,
-				]}
-			>
-				{children}
-			</View>
+			<View style={[styles.container, { flex: 1 }, rootContainerStyle]}>{children}</View>
 		</>
 	);
 };

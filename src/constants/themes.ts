@@ -6,6 +6,6 @@ export class ColorTheme {
 	};
 
 	static text = {
-		white: "#fff"
-	}
+		white: "#fff",
+	};
 }

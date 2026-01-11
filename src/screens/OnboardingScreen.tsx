@@ -1,5 +1,5 @@
-import { View } from "react-native"
+import { View } from "react-native";
 
 export const OnboardingScreen = () => {
-    return <View />
-}
+	return <View />;
+};

@@ -1,1 +1,3 @@
-export const AuthorizedStackNavigation = () => { return null };
+export const AuthorizedStackNavigation = () => {
+	return null;
+};

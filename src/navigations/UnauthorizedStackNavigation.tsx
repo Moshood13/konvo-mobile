@@ -26,16 +26,16 @@ export const UnauthorizeStackNavigation = () => {
 				component={WelcomeScreen}
 				options={{ animation: "slide_from_right" }}
 			/>
-            <UnauthorizedStack.Screen
-                name="LoginScreen"
-                component={SignInScreen}
-                options={{ animation: "slide_from_right" }}
-            />
-            <UnauthorizedStack.Screen
-                name="SignUpScreen"
-                component={SignUpScreen}
-                options={{ animation: "slide_from_right" }}
-            />
+			<UnauthorizedStack.Screen
+				name="LoginScreen"
+				component={SignInScreen}
+				options={{ animation: "slide_from_right" }}
+			/>
+			<UnauthorizedStack.Screen
+				name="SignUpScreen"
+				component={SignUpScreen}
+				options={{ animation: "slide_from_right" }}
+			/>
 		</UnauthorizedStack.Navigator>
 	);
 };

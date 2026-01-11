@@ -21,7 +21,11 @@ const SplashStack = createNativeStackNavigator<SplashStackParamList>();
 
 export const SplashStackNavigation = () => {
 	return (
-		<SplashStack.Navigator id={null} initialRouteName="AppNavigatorStack" screenOptions={{ headerShown: false }}>
+		<SplashStack.Navigator
+			id={null}
+			initialRouteName="AppNavigatorStack"
+			screenOptions={{ headerShown: false }}
+		>
 			<SplashStack.Group>
 				<SplashStack.Screen name="SplashScreen" component={SplashScreen} />
 				<SplashStack.Screen

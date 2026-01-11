@@ -5,15 +5,13 @@ import { ColorConstants } from "../../../constants";
 export const SignInScreen = () => {
 	return (
 		<AuthScreenContainer>
-			<View style={styles.loginContainer}>
-				
-			</View>
+			<View style={styles.loginContainer}></View>
 		</AuthScreenContainer>
 	);
 };
 
 const styles = StyleSheet.create({
 	loginContainer: {
-		backgroundColor: ColorConstants.white
-	}
-})
+		backgroundColor: ColorConstants.white,
+	},
+});

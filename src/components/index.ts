@@ -1,10 +1,10 @@
 export { MainContainer } from "./layouts/MainContainer";
 
-export * from "./shared/props"
+export * from "./shared/props";
 
 // texts
 export { BoldText } from "./text/BoldText";
 export { TitleText } from "./text/TitleText";
 
-// button 
+// button
 export { ActionText } from "./button/ActionText";

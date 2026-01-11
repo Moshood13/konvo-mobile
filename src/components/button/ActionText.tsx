@@ -13,7 +13,7 @@ import { ButtonText } from "../text/ButtonText";
 interface Props {
 	text: string;
 	style?: StyleProp<TextStyle>;
-	 
+
 	onPress: (event: GestureResponderEvent) => void;
 	iconName?: ComponentProps<typeof Ionicons>["name"];
 	iconColor?: string;

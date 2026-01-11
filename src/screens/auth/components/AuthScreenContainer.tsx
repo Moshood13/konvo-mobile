@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
 import { MainContainer } from "../../../components";
 import { ImageBackground, StyleSheet, View } from "react-native";
-import { AuthImage } from "../../../assets/images"
+import { AuthImage } from "../../../assets/images";
 
 interface Prop {
 	children: ReactNode;
@@ -9,11 +9,7 @@ interface Prop {
 export const AuthScreenContainer: FC<Prop> = ({ children }) => {
 	return (
 		<MainContainer>
-			<ImageBackground
-				source={AuthImage}
-				style={styles.imageContainer}
-				resizeMode="cover"
-			/>
+			<ImageBackground source={AuthImage} style={styles.imageContainer} resizeMode="cover" />
 			<View style={styles.overlay} />
 			{children}
 		</MainContainer>

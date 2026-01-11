@@ -9,7 +9,7 @@ interface Props {
 		 * Pass the ref to the navigation container to register it to the instrumentation
 		 * @param navigationContainerRef Ref to a `NavigationContainer`
 		 */
-		 
+
 		registerNavigationContainer: (navigationContainerRef: unknown) => void;
 	};
 }

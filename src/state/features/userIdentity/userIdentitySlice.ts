@@ -1,7 +1,11 @@
-import { emptyUserInfoResponse, UserIdentityResponse, UserInfoResponse, UserToken } from "../../../models";
+import {
+	emptyUserInfoResponse,
+	UserIdentityResponse,
+	UserInfoResponse,
+	UserToken,
+} from "../../../models";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { jwtDecode } from "jwt-decode";
-
 
 interface UserIdentityState {
 	value: {

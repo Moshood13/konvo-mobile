@@ -6,7 +6,6 @@ import { WelcomeScreenNavigationProps } from "../../navigations/UnauthorizedStac
 import { useCallback } from "react";
 
 export const WelcomeScreen = ({ navigation }: WelcomeScreenNavigationProps) => {
-
 	const navigateToLoginScreen = useCallback(() => {
 		navigation.navigate("LoginScreen");
 	}, []);
