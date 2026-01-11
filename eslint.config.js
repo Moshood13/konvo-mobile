@@ -30,7 +30,6 @@ export default [
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
-          ignoreEnums: true,
           argsIgnorePattern: "^_",
           varsIgnorePattern: "^_",
         },
