@@ -9,7 +9,7 @@ interface Props {
 		 * Pass the ref to the navigation container to register it to the instrumentation
 		 * @param navigationContainerRef Ref to a `NavigationContainer`
 		 */
-		// eslint-disable-next-line no-unused-vars
+		 
 		registerNavigationContainer: (navigationContainerRef: unknown) => void;
 	};
 }

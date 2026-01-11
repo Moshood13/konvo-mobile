@@ -1,6 +1,7 @@
 import { FC, ReactNode } from "react";
 import { MainContainer } from "../../../components";
 import { ImageBackground, StyleSheet, View } from "react-native";
+import { AuthImage } from "../../../assets/images"
 
 interface Prop {
 	children: ReactNode;
@@ -9,7 +10,7 @@ export const AuthScreenContainer: FC<Prop> = ({ children }) => {
 	return (
 		<MainContainer>
 			<ImageBackground
-				source={require("../../../assets/images/auth-image.jpg")}
+				source={AuthImage}
 				style={styles.imageContainer}
 				resizeMode="cover"
 			/>

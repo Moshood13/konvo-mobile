@@ -13,7 +13,7 @@ import { ButtonText } from "../text/ButtonText";
 interface Props {
 	text: string;
 	style?: StyleProp<TextStyle>;
-	// eslint-disable-next-line no-unused-vars
+	 
 	onPress: (event: GestureResponderEvent) => void;
 	iconName?: ComponentProps<typeof Ionicons>["name"];
 	iconColor?: string;
