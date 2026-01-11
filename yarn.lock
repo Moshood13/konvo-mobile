@@ -2375,13 +2375,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reduxjs/toolkit@npm:^2.9.0":
-  version: 2.9.0
-  resolution: "@reduxjs/toolkit@npm:2.9.0"
+"@reduxjs/toolkit@npm:^2.11.2":
+  version: 2.11.2
+  resolution: "@reduxjs/toolkit@npm:2.11.2"
   dependencies:
     "@standard-schema/spec": "npm:^1.0.0"
     "@standard-schema/utils": "npm:^0.3.0"
-    immer: "npm:^10.0.3"
+    immer: "npm:^11.0.0"
     redux: "npm:^5.0.1"
     redux-thunk: "npm:^3.1.0"
     reselect: "npm:^5.1.0"
@@ -2393,7 +2393,7 @@ __metadata:
       optional: true
     react-redux:
       optional: true
-  checksum: 10c0/eef65436b3cd96a264de09e94b8a9d585773578442ef3c1c5f2b3bb261a727405e89b004965198f95c5391645b7dbc6576dc07b46de1bede1d6c62c13c17c7d0
+  checksum: 10c0/4d388b96dc4b12a577af23607c252b3647c1b3b5136dbb0212e1dbbef9bb309e93d3ba6a95795ee165e87e4286453025cd67a98b5b3bb6d244b93ea487dd1ac0
   languageName: node
   linkType: hard
 
@@ -5371,6 +5371,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-secure-store@npm:~14.2.4":
+  version: 14.2.4
+  resolution: "expo-secure-store@npm:14.2.4"
+  peerDependencies:
+    expo: "*"
+  checksum: 10c0/490009d561f03609b819251d71c741643ad9e556afc744dcc5dce1e4b4ea288fc602cc4d93f6045e9a1b09a7f821f1cde5005971d98ab01bbac9b46a054c5e31
+  languageName: node
+  linkType: hard
+
 "expo-status-bar@npm:~2.2.3":
   version: 2.2.3
   resolution: "expo-status-bar@npm:2.2.3"
@@ -6043,10 +6052,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"immer@npm:^10.0.3":
-  version: 10.1.3
-  resolution: "immer@npm:10.1.3"
-  checksum: 10c0/b3929022c1999935c9c5e9491fce20d883c15a04072628056f3b8c51a63ac0876d1c1f25cec146e325c30c906bc7f15a636c29ed53156f0a3049150f152df4c8
+"immer@npm:^11.0.0":
+  version: 11.1.3
+  resolution: "immer@npm:11.1.3"
+  checksum: 10c0/2d0bcb7946274bb99254b8129026da9579591569afdd4f29e5ef3ebf231375c7ab97c344ffbfc9eeabea27a2145623fca1287c17e3ebd007c8cdcfd82954eeb7
   languageName: node
   linkType: hard
 
@@ -6791,6 +6800,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jwt-decode@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "jwt-decode@npm:4.0.0"
+  checksum: 10c0/de75bbf89220746c388cf6a7b71e56080437b77d2edb29bae1c2155048b02c6b8c59a3e5e8d6ccdfd54f0b8bda25226e491a4f1b55ac5f8da04cfbadec4e546c
+  languageName: node
+  linkType: hard
+
 "keyv@npm:^4.5.4":
   version: 4.5.4
   resolution: "keyv@npm:4.5.4"
@@ -6818,7 +6834,7 @@ __metadata:
     "@react-navigation/bottom-tabs": "npm:^7.4.7"
     "@react-navigation/native": "npm:^7.1.17"
     "@react-navigation/native-stack": "npm:^7.3.26"
-    "@reduxjs/toolkit": "npm:^2.9.0"
+    "@reduxjs/toolkit": "npm:^2.11.2"
     "@sentry/react-native": "npm:~6.14.0"
     "@shopify/react-native-skia": "npm:v2.0.0-next.4"
     "@tanstack/react-query": "npm:^5.87.1"
@@ -6837,13 +6853,17 @@ __metadata:
     eslint-plugin-testing-library: "npm:^7.15.4"
     expo: "npm:~53.0.25"
     expo-dev-client: "npm:~5.2.4"
+    expo-secure-store: "npm:~14.2.4"
     expo-status-bar: "npm:~2.2.3"
+    jwt-decode: "npm:^4.0.0"
     prettier: "npm:^3.6.2"
     react: "npm:19.0.0"
     react-hook-form: "npm:^7.62.0"
     react-native: "npm:0.79.6"
     react-native-gesture-handler: "npm:~2.24.0"
     react-native-get-random-values: "npm:^1.11.0"
+    react-native-mmkv: "npm:^4.1.1"
+    react-native-nitro-modules: "npm:^0.32.1"
     react-native-paper: "npm:^5.14.5"
     react-native-reanimated: "npm:~3.17.4"
     react-native-safe-area-context: "npm:5.4.0"
@@ -6852,6 +6872,7 @@ __metadata:
     react-native-svg-transformer: "npm:^1.5.2"
     react-native-vector-icons: "npm:^10.3.0"
     react-redux: "npm:^9.2.0"
+    redux-persist: "npm:^6.0.0"
     ts-node: "npm:^10.9.2"
     typescript: "npm:~5.8.3"
     typescript-eslint: "npm:^8.51.0"
@@ -8446,6 +8467,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-mmkv@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "react-native-mmkv@npm:4.1.1"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+    react-native-nitro-modules: "*"
+  checksum: 10c0/53f87ab5daa31b5a1d236e29cacca4a7ea0cccb8604ee88fb7725db786b6415476a737ae1f0266225c4d283ef0326524250b3cef6add6eb6b7efa1c480d46678
+  languageName: node
+  linkType: hard
+
+"react-native-nitro-modules@npm:^0.32.1":
+  version: 0.32.1
+  resolution: "react-native-nitro-modules@npm:0.32.1"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/5f11eda5965225f7ef3d758441ee4ca1355c950ff38de5ac950a848ccb6d1a2ebe765c34db17cd2aa5e1362661e86931620d20d856f04a4fa593df2b62e189e3
+  languageName: node
+  linkType: hard
+
 "react-native-paper@npm:^5.14.5":
   version: 5.14.5
   resolution: "react-native-paper@npm:5.14.5"
@@ -8646,6 +8688,15 @@ __metadata:
   version: 19.0.0
   resolution: "react@npm:19.0.0"
   checksum: 10c0/9cad8f103e8e3a16d15cb18a0d8115d8bd9f9e1ce3420310aea381eb42aa0a4f812cf047bb5441349257a05fba8a291515691e3cb51267279b2d2c3253f38471
+  languageName: node
+  linkType: hard
+
+"redux-persist@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "redux-persist@npm:6.0.0"
+  peerDependencies:
+    redux: ">4.0.0"
+  checksum: 10c0/8242d265ab8d28bbc95cf2dc2a05b869eb67aa309b1ed08163c926f3af56dd8eb1ea62118286083461b8ef2024d3b349fd264e5a62a70eb2e74d068c832d5bf2
   languageName: node
   linkType: hard
 

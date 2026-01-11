@@ -1,2 +1,3 @@
 export { SplashScreen } from "./SplashScreen";
-export { SignInScreen } from "./signin/SignInScreen";
+export { OnboardingScreen } from "./OnboardingScreen";
+export { SignInScreen, SignUpScreen, WelcomeScreen } from "./auth";

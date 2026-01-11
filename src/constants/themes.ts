@@ -4,4 +4,8 @@ export class ColorTheme {
 	static mainContainer = {
 		backgroundColor: ColorConstants.white,
 	};
+
+	static text = {
+		white: "#fff"
+	}
 }

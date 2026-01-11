@@ -1,7 +1,7 @@
 import { NavigationContainer as Container } from "@react-navigation/native";
 import { Integration } from "@sentry/core";
 import { FC, useRef } from "react";
-import { View } from "react-native";
+import { SplashStackNavigation } from "./SplashStackNavigations";
 
 interface Props {
 	reactNavigationIntegration: Integration & {
@@ -24,7 +24,7 @@ export const NavigationContainer: FC<Props> = ({ reactNavigationIntegration }) =
 				reactNavigationIntegration.registerNavigationContainer(navigation);
 			}}
 		>
-			<View />
+			<SplashStackNavigation />
 		</Container>
 	);
 };

@@ -1,6 +1,5 @@
 import { FC, ReactNode } from "react";
 import { StatusBar, StyleSheet, View, StyleProp, ViewStyle } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ColorConstants } from "../../constants/colors";
 import { ColorTheme } from "../../constants";
 
@@ -10,7 +9,6 @@ interface MainContainerProps {
 }
 
 export const MainContainer: FC<MainContainerProps> = ({ children, rootContainerStyle }) => {
-	const insets = useSafeAreaInsets();
 	return (
 		<>
 			<StatusBar
@@ -21,7 +19,7 @@ export const MainContainer: FC<MainContainerProps> = ({ children, rootContainerS
 			<View
 				style={[
 					styles.container,
-					{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom },
+					{ flex: 1},
 					rootContainerStyle,
 				]}
 			>

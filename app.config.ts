@@ -30,6 +30,7 @@ export default ({ config }) => {
 		icon,
 		scheme: "konvo",
 		platforms: ["ios", "android"],
+		plugins: ["expo-secure-store"],
 		updates: {
 			fallbackToCacheTimeout: 0,
 		},
