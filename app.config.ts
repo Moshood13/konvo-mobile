@@ -1,21 +1,21 @@
 import "dotenv/config";
 
 export default ({ config }) => {
-	let appEnv = process.env.APP_ENV || "development";
+	const appEnv = process.env.APP_ENV || "development";
 
 	let appName = "Konvo (dev)";
-	let icon = "./assets/konvo-icon.png";
+	let icon = "./src/assets/konvo-icon.png";
 	let androidPackage = "com.konvo.dev";
 	let iosBundleId = "com.konvo.dev";
 
 	if (appEnv === "staging") {
 		appName = "konvo (staging)";
-		icon = "./assets/konvo-icon.png";
+		icon = "./src/assets/konvo-icon.png";
 		androidPackage = "com.konvo.staging";
 		iosBundleId = "com.konvo.staging";
 	} else if (appEnv === "production") {
 		appName = "Konvo";
-		icon = "./assets/konvo-icon.png";
+		icon = "./src/assets/konvo-icon.png";
 		androidPackage = "com.konvo";
 		iosBundleId = "com.konvo";
 	}
@@ -30,18 +30,19 @@ export default ({ config }) => {
 		icon,
 		scheme: "konvo",
 		platforms: ["ios", "android"],
+		plugins: ["expo-secure-store"],
 		updates: {
 			fallbackToCacheTimeout: 0,
 		},
 		splash: {
-			image: "./assets/konvo-splashIcon.png",
+			image: "./src/assets/konvo-splashIcon.png",
 			resizeMode: "contain",
 			backgroundColor: "#ffffff",
 		},
 		android: {
 			package: androidPackage,
 			adaptiveIcon: {
-				foregroundImage: "./assets/konvo-icon.png",
+				foregroundImage: "./src/assets/konvo-icon.png",
 				backgroundColor: "#ffffff",
 			},
 		},

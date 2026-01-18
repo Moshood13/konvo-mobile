@@ -1,0 +1,18 @@
+export const ColorConstants = {
+	black900: "#000",
+	black50: "#616161",
+	blue: "#40C4FF",
+	blue50: "#E8F0F9",
+	blue100: "#C4EDFF",
+	blue200: "#A7E4FF",
+	blue500: "#1565C0",
+	darkBrown100: "#434343",
+	darkBrown500: "#3A1C1C",
+	facebookBlue: "#3B5896",
+	googleRed: "#FF4934",
+	green100: "#2B868C",
+	lightBlue: "#ECF9FF",
+	red: "#FF0000",
+	white: "#fff",
+	white50: "#ccc",
+};

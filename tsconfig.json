@@ -1,14 +1,15 @@
 {
-  "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "target": "ESNext",
-    "jsx": "react-native",
-    "allowJs": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "noEmit": true,
-    "resolveJsonModule": true
-  },
-  "extends": "expo/tsconfig.base"
+	"compilerOptions": {
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"target": "ESNext",
+		"jsx": "react-native",
+		"allowJs": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"noEmit": true,
+		"resolveJsonModule": true,
+		"types": ["jest", "node"]
+	},
+	"extends": "expo/tsconfig.base"
 }
