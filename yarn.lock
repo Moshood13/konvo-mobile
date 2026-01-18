@@ -5823,6 +5823,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"globals@npm:^17.0.0":
+  version: 17.0.0
+  resolution: "globals@npm:17.0.0"
+  checksum: 10c0/e3c169fdcb0fc6755707b697afb367bea483eb29992cfc0de1637382eb893146e17f8f96db6d7453e3696b478a7863ae2000e6c71cd2f4061410285106d3847a
+  languageName: node
+  linkType: hard
+
 "globalthis@npm:^1.0.4":
   version: 1.0.4
   resolution: "globalthis@npm:1.0.4"
@@ -6855,6 +6862,7 @@ __metadata:
     expo-dev-client: "npm:~5.2.4"
     expo-secure-store: "npm:~14.2.4"
     expo-status-bar: "npm:~2.2.3"
+    globals: "npm:^17.0.0"
     jwt-decode: "npm:^4.0.0"
     prettier: "npm:^3.6.2"
     react: "npm:19.0.0"
