@@ -28,32 +28,34 @@ export const AppNavigator = () => {
 		SharedPreferenceConstants.hasSeenOnboardingScreen,
 	);
 
+	console.log("hasSeenOnardingScreen", hasSeenOnboardingScreen);
+
 	const { accessToken } = useAppSelector(
 		(s) => s.persistedSecured.userIdentity.value.identity.userToken,
 	);
 
-	if (!hasSeenOnboardingScreen) {
-		return (
-			<AppNavigatorStack.Navigator
-				id={null}
-				screenOptions={{ headerShown: false }}
-				initialRouteName="OnboardingScreen"
-			>
-				<AppNavigatorStack.Group>
-					<AppNavigatorStack.Screen
-						name="OnboardingScreen"
-						component={OnboardingScreen}
-						options={{ animation: "slide_from_right", gestureEnabled: false }}
-					/>
-					<AppNavigatorStack.Screen
-						name="UnAuthorizedStack"
-						component={UnauthorizeStackNavigation}
-						options={{ animation: "slide_from_right", gestureEnabled: false }}
-					/>
-				</AppNavigatorStack.Group>
-			</AppNavigatorStack.Navigator>
-		);
-	}
+	// if (!hasSeenOnboardingScreen) {
+	// 	return (
+	// 		<AppNavigatorStack.Navigator
+	// 			id={null}
+	// 			screenOptions={{ headerShown: false }}
+	// 			initialRouteName="OnboardingScreen"
+	// 		>
+	// 			<AppNavigatorStack.Group>
+	// 				<AppNavigatorStack.Screen
+	// 					name="OnboardingScreen"
+	// 					component={OnboardingScreen}
+	// 					options={{ animation: "slide_from_right", gestureEnabled: false }}
+	// 				/>
+	// 				<AppNavigatorStack.Screen
+	// 					name="UnAuthorizedStack"
+	// 					component={UnauthorizeStackNavigation}
+	// 					options={{ animation: "slide_from_right", gestureEnabled: false }}
+	// 				/>
+	// 			</AppNavigatorStack.Group>
+	// 		</AppNavigatorStack.Navigator>
+	// 	);
+	// }
 
 	if (!accessToken) {
 		return (

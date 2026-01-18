@@ -3,13 +3,23 @@ import { SignInScreen, SignUpScreen, WelcomeScreen } from "../screens";
 
 export type UnauthorizedStackParamList = {
 	WelcomeScreen: undefined;
-	LoginScreen: undefined;
+	SignInScreen: undefined;
 	SignUpScreen: undefined;
 };
 
 export type WelcomeScreenNavigationProps = NativeStackScreenProps<
 	UnauthorizedStackParamList,
 	"WelcomeScreen"
+>;
+
+export type SignInScreenNavigationProps = NativeStackScreenProps<
+	UnauthorizedStackParamList,
+	"SignInScreen"
+>;
+
+export type SignUpScreenNavigationProps = NativeStackScreenProps<
+	UnauthorizedStackParamList,
+	"SignUpScreen"
 >;
 
 const UnauthorizedStack = createNativeStackNavigator<UnauthorizedStackParamList>();
@@ -27,7 +37,7 @@ export const UnauthorizeStackNavigation = () => {
 				options={{ animation: "slide_from_right" }}
 			/>
 			<UnauthorizedStack.Screen
-				name="LoginScreen"
+				name="SignInScreen"
 				component={SignInScreen}
 				options={{ animation: "slide_from_right" }}
 			/>

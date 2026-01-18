@@ -1704,14 +1704,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hookform/resolvers@npm:^5.2.1":
-  version: 5.2.1
-  resolution: "@hookform/resolvers@npm:5.2.1"
+"@hookform/resolvers@npm:^5.2.2":
+  version: 5.2.2
+  resolution: "@hookform/resolvers@npm:5.2.2"
   dependencies:
     "@standard-schema/utils": "npm:^0.3.0"
   peerDependencies:
     react-hook-form: ^7.55.0
-  checksum: 10c0/e8e48abc188b5139bc444e4495e2fb1680c6aafa31d79c5d7fa4d7d690b0fc2bac1dfbd99213cbc0c6c53c5c3c4e8c4dc28278dd87a3fa0176540795a6f2edde
+  checksum: 10c0/0692cd61dcc2a70cbb27b88a37f733c39e97f555c036ba04a81bd42b0467461cfb6bafacb46c16f173672f9c8a216bd7928a2330d4e49c700d130622bf1defaf
   languageName: node
   linkType: hard
 
@@ -6830,7 +6830,7 @@ __metadata:
     "@babel/core": "npm:^7.25.2"
     "@babel/preset-typescript": "npm:^7.28.5"
     "@eslint/js": "npm:^9.39.2"
-    "@hookform/resolvers": "npm:^5.2.1"
+    "@hookform/resolvers": "npm:^5.2.2"
     "@react-navigation/bottom-tabs": "npm:^7.4.7"
     "@react-navigation/native": "npm:^7.1.17"
     "@react-navigation/native-stack": "npm:^7.3.26"
@@ -6858,7 +6858,7 @@ __metadata:
     jwt-decode: "npm:^4.0.0"
     prettier: "npm:^3.6.2"
     react: "npm:19.0.0"
-    react-hook-form: "npm:^7.62.0"
+    react-hook-form: "npm:^7.71.0"
     react-native: "npm:0.79.6"
     react-native-gesture-handler: "npm:~2.24.0"
     react-native-get-random-values: "npm:^1.11.0"
@@ -6876,8 +6876,9 @@ __metadata:
     ts-node: "npm:^10.9.2"
     typescript: "npm:~5.8.3"
     typescript-eslint: "npm:^8.51.0"
+    usehooks-ts: "npm:^3.1.1"
     uuid: "npm:^12.0.0"
-    yup: "npm:^1.7.0"
+    yup: "npm:^1.7.1"
   languageName: unknown
   linkType: soft
 
@@ -8382,12 +8383,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:^7.62.0":
-  version: 7.62.0
-  resolution: "react-hook-form@npm:7.62.0"
+"react-hook-form@npm:^7.71.0":
+  version: 7.71.0
+  resolution: "react-hook-form@npm:7.71.0"
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18 || ^19
-  checksum: 10c0/451a25a2ddf07be14f690d2ad3f2f970e0b933fd059ef141c6da9e19d0566d739e9d5cc9c482e3533f3fd01d97e658b896a01ce45a1259ad7b0d4638ba0112c6
+  checksum: 10c0/848a9710d1e0e7ba7ec61229f48ba52bb182761b8ac9604e03cf893dbf357da61f5fc8d761ae3554d508fdd1e4f81a74c847056e3e7c2e812288c753d9f8303b
   languageName: node
   linkType: hard
 
@@ -10120,6 +10121,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"usehooks-ts@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "usehooks-ts@npm:3.1.1"
+  dependencies:
+    lodash.debounce: "npm:^4.0.8"
+  peerDependencies:
+    react: ^16.8.0  || ^17 || ^18 || ^19 || ^19.0.0-rc
+  checksum: 10c0/8bbebf52b063f2e705eb27364f08ec2eff987b9e8d28d82a28248652dd89ef53cb514e1f2ee1cbc6ac6e083a8dce86310301c3e92a99902b98c32a26381202d7
+  languageName: node
+  linkType: hard
+
 "utils-merge@npm:1.0.1":
   version: 1.0.1
   resolution: "utils-merge@npm:1.0.1"
@@ -10535,15 +10547,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yup@npm:^1.7.0":
-  version: 1.7.0
-  resolution: "yup@npm:1.7.0"
+"yup@npm:^1.7.1":
+  version: 1.7.1
+  resolution: "yup@npm:1.7.1"
   dependencies:
     property-expr: "npm:^2.0.5"
     tiny-case: "npm:^1.0.3"
     toposort: "npm:^2.0.2"
     type-fest: "npm:^2.19.0"
-  checksum: 10c0/76760553b6813705092735ab1fe0049061545673b7cc9a8e554ef59c09db241888bdcca6c42b58bd0f8a707c1d9665ab1adb75a8e4cf380bfc89f17827f2b182
+  checksum: 10c0/76b8c7fc2ba467a346935d027a25c067f9653bb0413cd60fbe0518e3d62637a56dbfca49979c4bab1a93d8e9a50843ca73d90bdc271e2f5bce1effa7734e5f28
   languageName: node
   linkType: hard
 

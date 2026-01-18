@@ -4,10 +4,11 @@ import { ColorConstants } from "../../constants";
 import { AuthScreenContainer } from "./components/AuthScreenContainer";
 import { WelcomeScreenNavigationProps } from "../../navigations/UnauthorizedStackNavigation";
 import { useCallback } from "react";
+import { AuthImage } from "../../assets/images";
 
 export const WelcomeScreen = ({ navigation }: WelcomeScreenNavigationProps) => {
 	const navigateToLoginScreen = useCallback(() => {
-		navigation.navigate("LoginScreen");
+		navigation.navigate("SignInScreen");
 	}, []);
 
 	const navigateToSignUpScreen = useCallback(() => {
@@ -15,9 +16,9 @@ export const WelcomeScreen = ({ navigation }: WelcomeScreenNavigationProps) => {
 	}, []);
 
 	return (
-		<AuthScreenContainer>
+		<AuthScreenContainer authBackgroundImage={AuthImage}>
 			<View style={styles.contentContainer}>
-				<TitleText text="Konvo" style={{ fontSize: 64 }} />
+				<TitleText text="Konvo" style={{ fontSize: 64, }} />
 				<View style={styles.buttonContainer}>
 					<ActionText onPress={navigateToSignUpScreen} text="SIGN UP" style={styles.signUp} />
 					<ActionText onPress={navigateToLoginScreen} text="LOG IN" style={styles.logIn} />
@@ -29,14 +30,15 @@ export const WelcomeScreen = ({ navigation }: WelcomeScreenNavigationProps) => {
 
 const styles = StyleSheet.create({
 	contentContainer: {
-		flex: 0.4,
-		justifyContent: "space-around",
+		flex: 1,
+		justifyContent: "center",
 		alignItems: "center",
 		padding: 32,
+		gap: 64,
 	},
 	buttonContainer: {
 		flexDirection: "column",
-		gap: 32,
+		gap: 36,
 	},
 	signUp: {
 		padding: 16,
