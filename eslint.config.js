@@ -64,6 +64,7 @@ export default [
 				__dirname: "readonly",
 				...globals.browser,
 				...globals.node,
+				...globals.jest,
 				 __DEV__: "readonly",
 			},
 		},

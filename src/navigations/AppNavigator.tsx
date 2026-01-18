@@ -1,10 +1,10 @@
 import { NativeStackScreenProps, createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useMMKVBoolean } from "react-native-mmkv";
+// import { useMMKVBoolean } from "react-native-mmkv";
 
 import { UnauthorizeStackNavigation } from "./UnauthorizedStackNavigation";
-import { SharedPreferenceConstants } from "../constants";
+// import { SharedPreferenceConstants } from "../constants";
 import { useAppSelector } from "../hooks";
-import { OnboardingScreen } from "../screens";
+// import { OnboardingScreen } from "../screens";
 import { AuthorizedStackNavigation } from "./AuthorizedStackNavigation";
 export type AppNavigatorParamList = {
 	OnboardingScreen: undefined;
@@ -24,11 +24,9 @@ export type UnAuthorizedStackNavigationProps = NativeStackScreenProps<
 const AppNavigatorStack = createNativeStackNavigator<AppNavigatorParamList>();
 
 export const AppNavigator = () => {
-	const [hasSeenOnboardingScreen] = useMMKVBoolean(
-		SharedPreferenceConstants.hasSeenOnboardingScreen,
-	);
-
-	console.log("hasSeenOnardingScreen", hasSeenOnboardingScreen);
+	// const [hasSeenOnboardingScreen] = useMMKVBoolean(
+	// 	SharedPreferenceConstants.hasSeenOnboardingScreen,
+	// );
 
 	const { accessToken } = useAppSelector(
 		(s) => s.persistedSecured.userIdentity.value.identity.userToken,

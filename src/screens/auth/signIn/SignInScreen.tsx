@@ -1,6 +1,6 @@
 import { Animated, StyleSheet, Switch, View } from "react-native";
 import { AuthScreenContainer } from "../components/AuthScreenContainer";
-import { AuthBackgroundImage, CapaLogin } from "../../../assets/images";
+import { AuthBackgroundImage } from "../../../assets/images";
 import { ColorConstants, ColorTheme, SpacingConstants } from "../../../constants";
 import { RegularText } from "../../../components/text/RegularText";
 import { ActionText, BoldText, PaperInput, PrimaryButton, SecureInput } from "../../../components";

@@ -1,13 +1,12 @@
-import { Animated, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { AuthScreenContainer } from "../components/AuthScreenContainer";
-import { CapaSignUp } from "../../../assets/images";
 import { ColorConstants, ColorTheme, SpacingConstants } from "../../../constants";
 import { RegularText } from "../../../components/text/RegularText";
 import { ActionText, BoldText, PaperInput, PrimaryButton, SecureInput } from "../../../components";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { emptySignUpFormValue, getSignUpSchema } from "./validation";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo } from "react";
 import { SocialAuth } from "../socialAuth/SocialAuth";
 import { SignUpScreenNavigationProps } from "../../../navigations/UnauthorizedStackNavigation";
 

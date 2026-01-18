@@ -51,8 +51,6 @@ export const PaperInput: FC<InputProps> = ({
 			: (normalBorderColor ?? ColorTheme.inputField.normalBorderColor);
 	}, [isFocused, error]);
 
-	console.log("isFocused", isFocused);
-
 	useEffect(() => {
 		const hideSub = Keyboard.addListener("keyboardDidHide", () => {
 			setIsFocused(false);
