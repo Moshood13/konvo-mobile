@@ -11,12 +11,12 @@ export const RightIconInput: FC<IconInputProps> = ({
 	disabled,
 	text,
 	icon,
-    name,
-    control,
-    placeholder,
-    keyboardType,
-    isSecureEntry,
-    ...props
+	name,
+	control,
+	placeholder,
+	keyboardType,
+	isSecureEntry,
+	...props
 }) => {
 	const rightIcon = (
 		<TextInput.Icon

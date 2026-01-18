@@ -18,7 +18,7 @@ export const WelcomeScreen = ({ navigation }: WelcomeScreenNavigationProps) => {
 	return (
 		<AuthScreenContainer authBackgroundImage={AuthImage}>
 			<View style={styles.contentContainer}>
-				<TitleText text="Konvo" style={{ fontSize: 64, }} />
+				<TitleText text="Konvo" style={{ fontSize: 64 }} />
 				<View style={styles.buttonContainer}>
 					<ActionText onPress={navigateToSignUpScreen} text="SIGN UP" style={styles.signUp} />
 					<ActionText onPress={navigateToLoginScreen} text="LOG IN" style={styles.logIn} />

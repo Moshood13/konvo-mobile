@@ -10,7 +10,7 @@ export class ColorTheme {
 	};
 
 	static icon = {
-		whiteIcon: ColorConstants.white
+		whiteIcon: ColorConstants.white,
 	};
 
 	static button = {
@@ -25,7 +25,7 @@ export class ColorTheme {
 	};
 
 	static auth = {
-		loginBackgroundColor: ColorConstants.white, 
+		loginBackgroundColor: ColorConstants.white,
 		signUpBackgroundColor: ColorConstants.green100,
 		switchThumbColor: ColorConstants.green100,
 		falseTrackColor: ColorConstants.white50,
@@ -40,5 +40,5 @@ export class ColorTheme {
 		signInWelcomeScreenTextColor: ColorConstants.black50,
 		loginTextColor: ColorConstants.black900,
 		shadowColor: ColorConstants.black900,
-	}
+	};
 }

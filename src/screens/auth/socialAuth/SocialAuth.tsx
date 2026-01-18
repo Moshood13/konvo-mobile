@@ -13,7 +13,7 @@ export const SocialAuth = () => {
 			</ButtonContainer>
 			<ButtonContainer style={styles.googleAuth} onPress={() => {}}>
 				<Ionicons name="logo-google" size={16} color={ColorTheme.icon.whiteIcon} />
-				<RegularText text="Google"  />
+				<RegularText text="Google" />
 			</ButtonContainer>
 		</View>
 	);
@@ -22,7 +22,7 @@ export const SocialAuth = () => {
 const styles = StyleSheet.create({
 	socialAuthContainer: {
 		flexDirection: "row",
-        justifyContent: "space-between",
+		justifyContent: "space-between",
 	},
 	facebookAuth: {
 		backgroundColor: ColorTheme.button.facebookButtonColor,
@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		alignItems: "center",
 		padding: 16,
-        borderRadius: 24,
-        width: "49%"
+		borderRadius: 24,
+		width: "49%",
 	},
 	googleAuth: {
 		backgroundColor: ColorTheme.button.googleButtonColor,
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		padding: 16,
 		borderRadius: 24,
-        width: "49%"
+		width: "49%",
 	},
 	SocialAuthText: {},
 });

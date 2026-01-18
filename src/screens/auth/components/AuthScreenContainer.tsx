@@ -1,19 +1,35 @@
 import { FC, ReactNode } from "react";
 import { MainContainer } from "../../../components";
-import { ImageBackground, ImageSourcePropType, StyleProp, StyleSheet, View, ViewStyle } from "react-native";
+import {
+	ImageBackground,
+	ImageSourcePropType,
+	StyleProp,
+	StyleSheet,
+	View,
+	ViewStyle,
+} from "react-native";
 
 interface Prop {
 	children: ReactNode;
 	style?: StyleProp<ViewStyle>;
-	authBackgroundImage?: ImageSourcePropType,
+	authBackgroundImage?: ImageSourcePropType;
 	overlayStyle?: StyleProp<ViewStyle>;
 }
-export const AuthScreenContainer: FC<Prop> = ({ children, style, authBackgroundImage, overlayStyle }) => {
+export const AuthScreenContainer: FC<Prop> = ({
+	children,
+	style,
+	authBackgroundImage,
+	overlayStyle,
+}) => {
 	return (
 		<MainContainer rootContainerStyle={style}>
-			<ImageBackground source={authBackgroundImage} style={styles.imageContainer} resizeMode="cover">
+			<ImageBackground
+				source={authBackgroundImage}
+				style={styles.imageContainer}
+				resizeMode="cover"
+			>
 				<View style={[styles.overlay, overlayStyle]} />
-				<View style={[{flex: 1}, style]}>{children}</View>
+				<View style={[{ flex: 1 }, style]}>{children}</View>
 			</ImageBackground>
 		</MainContainer>
 	);

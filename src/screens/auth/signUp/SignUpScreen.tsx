@@ -113,14 +113,14 @@ const styles = StyleSheet.create({
 		textShadowColor: "rgba(0,0,0,0.3)",
 		textShadowOffset: { width: 2, height: 2 },
 		textShadowRadius: 4,
-		color: ColorConstants.white50
+		color: ColorConstants.white50,
 	},
 	signUpText: {
 		fontSize: 64,
 		textShadowColor: "rgba(0,0,0,0.3)",
 		textShadowOffset: { width: 2, height: 2 },
 		textShadowRadius: 4,
-		color: ColorConstants.white
+		color: ColorConstants.white,
 	},
 	loginFormContainer: {
 		paddingHorizontal: SpacingConstants.loginFormPaddingHorizontal,

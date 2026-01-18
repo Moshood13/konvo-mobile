@@ -10,8 +10,7 @@ export { TitleText } from "./text/TitleText";
 export { ActionText } from "./button/ActionText";
 export { PrimaryButton } from "./button/PrimaryButton";
 
-
-// inputs 
+// inputs
 export { PaperInput } from "./inputs/PaperInputs";
 export { SecureInput } from "./inputs/SecureInput";
 export { RightIconInput } from "./inputs/RightIconInput";

@@ -9,7 +9,7 @@ export const SecureInput: FC<IconInputProps> = ({
 	placeholder,
 	name,
 	control,
-    label,
+	label,
 	iconColor,
 	...props
 }) => {
@@ -35,7 +35,7 @@ export const SecureInput: FC<IconInputProps> = ({
 			isSecureEntry={!isPasswordVisible}
 			icon={renderRightIcon}
 			onIconPress={togglePasswordVisibility}
-            label={label}
+			label={label}
 			{...props}
 		/>
 	);

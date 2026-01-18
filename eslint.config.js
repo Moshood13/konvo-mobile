@@ -65,7 +65,7 @@ export default [
 				...globals.browser,
 				...globals.node,
 				...globals.jest,
-				 __DEV__: "readonly",
+				__DEV__: "readonly",
 			},
 		},
 		rules: {
