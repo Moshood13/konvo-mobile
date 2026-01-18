@@ -1,4 +1,4 @@
-import { Animated, StyleSheet, Switch, View } from "react-native";
+import { StyleSheet, Switch, View } from "react-native";
 import { AuthScreenContainer } from "../components/AuthScreenContainer";
 import { AuthBackgroundImage } from "../../../assets/images";
 import { ColorConstants, ColorTheme, SpacingConstants } from "../../../constants";
@@ -7,7 +7,7 @@ import { ActionText, BoldText, PaperInput, PrimaryButton, SecureInput } from "..
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { emptySignInFormValue, getSignInSchema } from "./validation";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { SocialAuth } from "../socialAuth/SocialAuth";
 import { SignInScreenNavigationProps } from "../../../navigations/UnauthorizedStackNavigation";
 
