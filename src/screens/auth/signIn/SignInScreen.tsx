@@ -14,17 +14,7 @@ import { SignInScreenNavigationProps } from "../../../navigations/UnauthorizedSt
 export const SignInScreen = ({ navigation }: SignInScreenNavigationProps) => {
 	const screenBackgroundColor = ColorConstants.white;
 	const [rememberMe, setRememberMe] = useState(false);
-	const [isInputFocused, setIsInputFocused] = useState(false);
 	const signInSchema = useMemo(() => getSignInSchema(), []);
-	const svgTranslateY = useRef(new Animated.Value(0)).current;
-
-	useEffect(() => {
-		Animated.timing(svgTranslateY, {
-			toValue: isInputFocused ? -80 : 0, // move up when focused
-			duration: 250,
-			useNativeDriver: true,
-		}).start();
-	}, [isInputFocused]);
 
 	const { control, formState } = useForm({
 		defaultValues: emptySignInFormValue,
@@ -55,8 +45,6 @@ export const SignInScreen = ({ navigation }: SignInScreenNavigationProps) => {
 							label="Email Address"
 							normalPlaceholderTextColor={ColorConstants.darkBrown100}
 							labelBackgroundColor={screenBackgroundColor}
-							onFocus={() => setIsInputFocused(true)}
-							onBlur={() => setIsInputFocused(false)}
 						/>
 						<SecureInput
 							control={control}
@@ -66,8 +54,6 @@ export const SignInScreen = ({ navigation }: SignInScreenNavigationProps) => {
 							label="Password"
 							normalPlaceholderTextColor={ColorConstants.darkBrown100}
 							labelBackgroundColor={screenBackgroundColor}
-							onFocus={() => setIsInputFocused(true)}
-							onBlur={() => setIsInputFocused(false)}
 						/>
 						<View style={styles.altContainer}>
 							<View style={styles.rememberMeContainer}>

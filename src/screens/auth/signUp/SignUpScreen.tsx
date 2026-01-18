@@ -22,7 +22,7 @@ export const SignUpScreen = ({ navigation }: SignUpScreenNavigationProps) => {
 
 	const onNavigateToSignInScreen = useCallback(() => {
 		navigation.navigate("SignInScreen");
-	}, []);
+	}, [navigation]);
 	return (
 		<AuthScreenContainer overlayStyle={{ backgroundColor: screenBackgroundColor }}>
 			<View style={styles.container}>

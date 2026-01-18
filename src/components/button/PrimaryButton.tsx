@@ -9,7 +9,6 @@ interface Props {
 	style?: StyleProp<ViewStyle>;
 	disabled?: boolean;
 	text: string;
-	color?: StyleProp<TextStyle>;
 	textStyle?: StyleProp<TextStyle>;
 }
 export const PrimaryButton: FC<Props> = ({ onPress, style, disabled, text, textStyle }) => {

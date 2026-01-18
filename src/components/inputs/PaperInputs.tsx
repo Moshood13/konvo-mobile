@@ -49,7 +49,7 @@ export const PaperInput: FC<InputProps> = ({
 		return isFocused
 			? (focusBorderColor ?? ColorTheme.inputField.focusBorderColor)
 			: (normalBorderColor ?? ColorTheme.inputField.normalBorderColor);
-	}, [isFocused, error]);
+	}, [isFocused, error, focusBorderColor, normalBorderColor]);
 
 	useEffect(() => {
 		const hideSub = Keyboard.addListener("keyboardDidHide", () => {
