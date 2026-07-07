@@ -7,6 +7,7 @@
 		"development": {
 			"developmentClient": true,
 			"distribution": "internal",
+			"environment": "development",
 			"android": {
 				"buildType": "apk"
 			},
@@ -16,12 +17,14 @@
 		},
 		"preview": {
 			"distribution": "internal",
+			"environment": "preview",
 			"env": {
 				"APP_ENV": "staging"
 			}
 		},
 		"production": {
 			"autoIncrement": true,
+			"environment": "production",
 			"env": {
 				"APP_ENV": "production"
 			}
