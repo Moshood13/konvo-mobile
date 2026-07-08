@@ -1,17 +1,17 @@
 import * as yup from "yup";
 
 export interface SignInAuthValues {
-	signInEmail: string;
-	signInPassword: string;
+	email: string;
+	password: string;
 }
 export const emptySignInFormValue: SignInAuthValues = {
-	signInEmail: "",
-	signInPassword: "",
+	email: "",
+	password: "",
 };
 
 export const getSignInSchema = (): yup.ObjectSchema<SignInAuthValues> => {
 	return yup.object().shape({
-		signInEmail: yup.string().email("Invalid email").required("Email is required"),
-		signInPassword: yup.string().trim().required("Password is required"),
+		email: yup.string().email("Invalid email").required("Email is required"),
+		password: yup.string().trim().required("Password is required"),
 	});
 };

@@ -1,24 +1,42 @@
 import { StyleSheet, View } from "react-native";
+import { Snackbar } from "react-native-paper";
 import { AuthScreenContainer } from "../components/AuthScreenContainer";
 import { ColorConstants, ColorTheme, SpacingConstants } from "../../../constants";
 import { RegularText } from "../../../components/text/RegularText";
 import { ActionText, BoldText, PaperInput, PrimaryButton, SecureInput } from "../../../components";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { emptySignUpFormValue, getSignUpSchema } from "./validation";
-import { useCallback, useMemo } from "react";
+import { emptySignUpFormValue, getSignUpSchema, SignUpAuthValues } from "./validation";
+import { useCallback, useMemo, useState } from "react";
 import { SocialAuth } from "../socialAuth/SocialAuth";
 import { SignUpScreenNavigationProps } from "../../../navigations/UnauthorizedStackNavigation";
+import { mapFirebaseAuthError, signUpWithEmail, useGoogleSignIn } from "../../../services/firebase";
 
 export const SignUpScreen = ({ navigation }: SignUpScreenNavigationProps) => {
 	const screenBackgroundColor = ColorTheme.auth.signUpBackgroundColor;
 	const signUpSchema = useMemo(() => getSignUpSchema(), []);
+	const [loading, setLoading] = useState(false);
+	const [errorMessage, setErrorMessage] = useState<string | null>(null);
+	const google = useGoogleSignIn();
 
-	const { control, formState } = useForm({
+	const { control, formState, handleSubmit } = useForm({
 		defaultValues: emptySignUpFormValue,
 		resolver: yupResolver(signUpSchema),
 		mode: "onChange",
 	});
+
+	// On success, the auth listener flips the navigation gate to the authorized stack.
+	const onSubmit = useCallback(async (values: SignUpAuthValues) => {
+		setErrorMessage(null);
+		setLoading(true);
+		try {
+			await signUpWithEmail(values.email, values.password, values.username);
+		} catch (error) {
+			setErrorMessage(mapFirebaseAuthError(error));
+		} finally {
+			setLoading(false);
+		}
+	}, []);
 
 	const onNavigateToSignInScreen = useCallback(() => {
 		navigation.navigate("SignInScreen");
@@ -74,7 +92,8 @@ export const SignUpScreen = ({ navigation }: SignUpScreenNavigationProps) => {
 						/>
 					</View>
 					<PrimaryButton
-						onPress={() => {}}
+						onPress={handleSubmit(onSubmit)}
+						loading={loading}
 						text="SIGN UP"
 						style={styles.loginButton}
 						textStyle={{ color: ColorConstants.black50 }}
@@ -85,7 +104,11 @@ export const SignUpScreen = ({ navigation }: SignUpScreenNavigationProps) => {
 							<RegularText text="or connect with" style={{ color: ColorConstants.white }} />
 							<View style={styles.line} />
 						</View>
-						<SocialAuth />
+						<SocialAuth
+							onGooglePress={google.promptGoogleSignIn}
+							googleLoading={google.loading}
+							googleDisabled={google.disabled}
+						/>
 					</View>
 					<ActionText
 						text="I Already have an account"
@@ -94,6 +117,16 @@ export const SignUpScreen = ({ navigation }: SignUpScreenNavigationProps) => {
 					/>
 				</View>
 			</View>
+			<Snackbar
+				visible={!!errorMessage || !!google.error}
+				onDismiss={() => {
+					setErrorMessage(null);
+					google.clearError();
+				}}
+				duration={4000}
+			>
+				{errorMessage ?? google.error}
+			</Snackbar>
 		</AuthScreenContainer>
 	);
 };
