@@ -1,17 +1,19 @@
-import {
-	emptyUserInfoResponse,
-	UserIdentityResponse,
-	UserInfoResponse,
-	UserToken,
-} from "../../../models";
+import { emptyUserInfoResponse, UserIdentityResponse, UserInfoResponse } from "../../../models";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { jwtDecode } from "jwt-decode";
 
 interface UserIdentityState {
 	value: {
 		identity: UserIdentityResponse;
 		info: UserInfoResponse;
 	};
+}
+
+/** Session payload derived from a signed-in Firebase user. */
+export interface FirebaseAuthPayload {
+	uid: string;
+	email: string;
+	idToken: string;
+	refreshToken: string;
 }
 
 export const initialState: UserIdentityState = {
@@ -29,27 +31,13 @@ const userIdentitySlice = createSlice({
 	name: "user-identity",
 	initialState,
 	reducers: {
-		tokenGenerationSuccess(state, action: PayloadAction<UserToken>) {
-			const decodedToken = jwtDecode(action.payload.accessToken);
+		authSuccess(state, action: PayloadAction<FirebaseAuthPayload>) {
+			const { uid, email, idToken, refreshToken } = action.payload;
 			state.value.identity = {
-				id: decodedToken["sub"],
-				email: decodedToken["email"],
-				userToken: { ...action.payload },
+				id: uid,
+				email,
+				userToken: { accessToken: idToken, refreshToken },
 			};
-		},
-		tokenGenerationFailed(state) {
-			state.value = { ...initialState.value };
-		},
-		tokenRefreshSuccess(state, action: PayloadAction<UserToken>) {
-			const decodedToken = jwtDecode(action.payload.accessToken);
-			state.value.identity = {
-				id: decodedToken["sub"],
-				email: decodedToken["email"],
-				userToken: { ...action.payload },
-			};
-		},
-		tokenRefreshFailed(state) {
-			state.value = { ...initialState.value };
 		},
 		logout(state) {
 			state.value = { ...initialState.value };
@@ -60,13 +48,6 @@ const userIdentitySlice = createSlice({
 	},
 });
 
-export const {
-	tokenGenerationSuccess,
-	tokenGenerationFailed,
-	tokenRefreshSuccess,
-	tokenRefreshFailed,
-	logout,
-	setAccountUser,
-} = userIdentitySlice.actions;
+export const { authSuccess, logout, setAccountUser } = userIdentitySlice.actions;
 
 export default userIdentitySlice.reducer;

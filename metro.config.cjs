@@ -12,7 +12,10 @@ config.transformer = {
 config.resolver = {
 	...resolver,
 	assetExts: resolver.assetExts.filter((ext) => ext !== "svg"),
-	sourceExts: [...resolver.sourceExts, "svg"],
+	// "cjs" + disabling package exports avoids Firebase's
+	// "Component auth has not been registered yet" error under Metro.
+	sourceExts: [...resolver.sourceExts, "svg", "cjs"],
+	unstable_enablePackageExports: false,
 };
 
 module.exports = withSentryConfig(config);
