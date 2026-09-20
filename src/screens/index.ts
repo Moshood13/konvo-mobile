@@ -1,4 +1,5 @@
 export { SplashScreen } from "./SplashScreen";
 export { OnboardingScreen } from "./OnboardingScreen";
-export { SignInScreen, SignUpScreen, WelcomeScreen } from "./auth";
-export { HomeScreen } from "./home/HomeScreen";
+export { SignInScreen, WelcomeScreen } from "./auth";
+export { ProfileSetupScreen } from "./onboarding/ProfileSetupScreen";
+export { ChatListScreen } from "./chats/ChatListScreen";

@@ -1,27 +1,25 @@
 import { StyleSheet, View } from "react-native";
 import { TitleText, ActionText } from "../../components";
-import { ColorConstants } from "../../constants";
+import { ColorConstants, ColorTheme } from "../../constants";
 import { AuthScreenContainer } from "./components/AuthScreenContainer";
 import { WelcomeScreenNavigationProps } from "../../navigations/UnauthorizedStackNavigation";
 import { useCallback } from "react";
 import { AuthImage } from "../../assets/images";
 
 export const WelcomeScreen = ({ navigation }: WelcomeScreenNavigationProps) => {
-	const navigateToLoginScreen = useCallback(() => {
+	// One destination, because sign-up and sign-in are the same act now: there are no
+	// passwords, so a first sign-in creates the account and the gate routes it into
+	// onboarding. Keeping two buttons would imply a distinction that does not exist.
+	const navigateToSignIn = useCallback(() => {
 		navigation.navigate("SignInScreen");
-	}, []);
-
-	const navigateToSignUpScreen = useCallback(() => {
-		navigation.navigate("SignUpScreen");
-	}, []);
+	}, [navigation]);
 
 	return (
 		<AuthScreenContainer authBackgroundImage={AuthImage}>
 			<View style={styles.contentContainer}>
-				<TitleText text="Konvo" style={{ fontSize: 64 }} />
+				<TitleText text="Konvo" style={styles.brand} />
 				<View style={styles.buttonContainer}>
-					<ActionText onPress={navigateToSignUpScreen} text="SIGN UP" style={styles.signUp} />
-					<ActionText onPress={navigateToLoginScreen} text="LOG IN" style={styles.logIn} />
+					<ActionText onPress={navigateToSignIn} text="GET STARTED" style={styles.logIn} />
 				</View>
 			</View>
 		</AuthScreenContainer>
@@ -35,6 +33,11 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		padding: 32,
 		gap: 64,
+	},
+	// Sits on the full-bleed photo background, so it opts out of the dark text default.
+	brand: {
+		fontSize: 64,
+		color: ColorTheme.text.inverse,
 	},
 	buttonContainer: {
 		flexDirection: "column",

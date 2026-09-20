@@ -14,7 +14,7 @@ export const Subtitle: FC<SimpleTextProps> = ({ text, style }) => {
 
 const styles = StyleSheet.create({
 	subtitle: {
-		color: ColorTheme.text.white,
+		color: ColorTheme.text.primary,
 		fontSize: 14,
 		fontFamily: FontsConstants.brFirma.regular,
 		lineHeight: 22,

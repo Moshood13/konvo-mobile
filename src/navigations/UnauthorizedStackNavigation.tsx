@@ -1,10 +1,9 @@
 import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack";
-import { SignInScreen, SignUpScreen, WelcomeScreen } from "../screens";
+import { SignInScreen, WelcomeScreen } from "../screens";
 
 export type UnauthorizedStackParamList = {
 	WelcomeScreen: undefined;
 	SignInScreen: undefined;
-	SignUpScreen: undefined;
 };
 
 export type WelcomeScreenNavigationProps = NativeStackScreenProps<
@@ -15,11 +14,6 @@ export type WelcomeScreenNavigationProps = NativeStackScreenProps<
 export type SignInScreenNavigationProps = NativeStackScreenProps<
 	UnauthorizedStackParamList,
 	"SignInScreen"
->;
-
-export type SignUpScreenNavigationProps = NativeStackScreenProps<
-	UnauthorizedStackParamList,
-	"SignUpScreen"
 >;
 
 const UnauthorizedStack = createNativeStackNavigator<UnauthorizedStackParamList>();
@@ -36,14 +30,12 @@ export const UnauthorizeStackNavigation = () => {
 				component={WelcomeScreen}
 				options={{ animation: "slide_from_right" }}
 			/>
+			{/* One screen for both routes in: Google, and an emailed sign-in link.
+			    There are no passwords, so there is no separate sign-up flow — a first
+			    sign-in creates the account and the gate routes it into onboarding. */}
 			<UnauthorizedStack.Screen
 				name="SignInScreen"
 				component={SignInScreen}
-				options={{ animation: "slide_from_right" }}
-			/>
-			<UnauthorizedStack.Screen
-				name="SignUpScreen"
-				component={SignUpScreen}
 				options={{ animation: "slide_from_right" }}
 			/>
 		</UnauthorizedStack.Navigator>

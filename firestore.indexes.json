@@ -1,0 +1,64 @@
+{
+	"indexes": [
+		{
+			"collectionGroup": "conversations",
+			"queryScope": "COLLECTION",
+			"fields": [
+				{ "fieldPath": "archived", "order": "ASCENDING" },
+				{ "fieldPath": "updatedAt", "order": "DESCENDING" }
+			]
+		},
+		{
+			"collectionGroup": "conversations",
+			"queryScope": "COLLECTION",
+			"fields": [
+				{ "fieldPath": "archived", "order": "ASCENDING" },
+				{ "fieldPath": "pinned", "order": "DESCENDING" },
+				{ "fieldPath": "updatedAt", "order": "DESCENDING" }
+			]
+		}
+	],
+
+	"fieldOverrides": [
+		{
+			"collectionGroup": "messages",
+			"fieldPath": "text",
+			"indexes": []
+		},
+		{
+			"collectionGroup": "messages",
+			"fieldPath": "image",
+			"indexes": []
+		},
+		{
+			"collectionGroup": "messages",
+			"fieldPath": "replyTo",
+			"indexes": []
+		},
+		{
+			"collectionGroup": "messages",
+			"fieldPath": "forwardedFrom",
+			"indexes": []
+		},
+		{
+			"collectionGroup": "messages",
+			"fieldPath": "system",
+			"indexes": []
+		},
+		{
+			"collectionGroup": "messages",
+			"fieldPath": "deletedFor",
+			"indexes": []
+		},
+		{
+			"collectionGroup": "conversations",
+			"fieldPath": "lastMessage",
+			"indexes": []
+		},
+		{
+			"collectionGroup": "conversations",
+			"fieldPath": "memberIds",
+			"indexes": []
+		}
+	]
+}

@@ -1,17 +1,21 @@
 import * as yup from "yup";
 
-export interface SignInAuthValues {
+export interface SignInFormValues {
 	email: string;
-	password: string;
 }
-export const emptySignInFormValue: SignInAuthValues = {
+
+export const emptySignInFormValue: SignInFormValues = {
 	email: "",
-	password: "",
 };
 
-export const getSignInSchema = (): yup.ObjectSchema<SignInAuthValues> => {
+// The explicit ObjectSchema<T> return type matters: without it yup infers the field
+// as optional and the resolver no longer matches useForm's generic.
+export const getSignInSchema = (): yup.ObjectSchema<SignInFormValues> => {
 	return yup.object().shape({
-		email: yup.string().email("Invalid email").required("Email is required"),
-		password: yup.string().trim().required("Password is required"),
+		email: yup
+			.string()
+			.trim()
+			.email("That email address doesn't look right")
+			.required("Enter your email address"),
 	});
 };

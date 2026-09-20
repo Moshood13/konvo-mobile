@@ -15,4 +15,14 @@ export const ColorConstants = {
 	red: "#FF0000",
 	white: "#fff",
 	white50: "#ccc",
+
+	// Chat palette. Derived from the brand teal so bubbles read as Konvo, not WhatsApp.
+	green25: "#D7EDEE", // outgoing bubble
+	green500: "#1F6368", // pressed/active teal
+	grey50: "#F5F5F5", // list separators, composer field
+	grey100: "#E9E4DE", // chat screen background
+	grey300: "#BDBDBD", // sent/delivered ticks
+	grey500: "#8A8A8E", // secondary text on light
+	tickBlue: "#34B7F1", // read ticks
+	amber: "#F5A623", // pending/failed accents
 };

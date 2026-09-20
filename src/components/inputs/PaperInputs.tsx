@@ -2,7 +2,7 @@ import { Controller } from "react-hook-form";
 import { View, StyleSheet, Animated, Keyboard } from "react-native";
 import { TextInput, HelperText } from "react-native-paper";
 import { InputProps } from "../shared/props";
-import { FC, useCallback, useEffect, useMemo, useState } from "react";
+import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ColorConstants, ColorTheme } from "../../constants";
 
 export const PaperInput: FC<InputProps> = ({
@@ -27,6 +27,12 @@ export const PaperInput: FC<InputProps> = ({
 	labelTextColor,
 }) => {
 	const [isFocused, setIsFocused] = useState(false);
+
+	// Lives at component scope, not inside the Controller render prop. Hooks called
+	// from a render prop run in a nested, conditionally-mounted position: React
+	// counts them against THIS component, so the hook order shifts whenever the
+	// Controller remounts, and the Animated.Value was being recreated on top of that.
+	const labelTranslateY = useRef(new Animated.Value(0)).current;
 
 	const handleFocus = useCallback(() => {
 		setIsFocused(true);
@@ -69,8 +75,6 @@ export const PaperInput: FC<InputProps> = ({
 			render={({
 				field: { onChange: controllerOnChange, onBlur: controllerOnBlur, value: controllerValue },
 			}) => {
-				const labelTranslateY = useMemo(() => new Animated.Value(controllerValue ? 0 : 20), []);
-
 				Animated.timing(labelTranslateY, {
 					toValue: isFocused || controllerValue ? 0 : 20,
 					duration: 150,

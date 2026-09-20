@@ -16,7 +16,7 @@ export const SocialAuth = ({ onGooglePress, googleLoading, googleDisabled }: Soc
 			{/* Facebook auth is wired in a later bit. */}
 			<ButtonContainer style={styles.facebookAuth} onPress={() => {}}>
 				<Ionicons name="logo-facebook" size={16} color={ColorTheme.icon.whiteIcon} />
-				<RegularText text="Facebook" />
+				<RegularText text="Facebook" style={styles.socialAuthText} />
 			</ButtonContainer>
 			<ButtonContainer
 				style={styles.googleAuth}
@@ -28,7 +28,7 @@ export const SocialAuth = ({ onGooglePress, googleLoading, googleDisabled }: Soc
 				) : (
 					<>
 						<Ionicons name="logo-google" size={16} color={ColorTheme.icon.whiteIcon} />
-						<RegularText text="Google" />
+						<RegularText text="Google" style={styles.socialAuthText} />
 					</>
 				)}
 			</ButtonContainer>
@@ -61,5 +61,8 @@ const styles = StyleSheet.create({
 		borderRadius: 24,
 		width: "49%",
 	},
-	SocialAuthText: {},
+	// Text components default to dark; these sit on solid brand-coloured buttons.
+	socialAuthText: {
+		color: ColorTheme.text.inverse,
+	},
 });

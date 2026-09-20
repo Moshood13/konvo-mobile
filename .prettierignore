@@ -1,0 +1,14 @@
+node_modules
+.yarn
+.expo
+.expo-shared
+android
+ios
+coverage
+dist
+build
+functions/lib
+functions/node_modules
+yarn.lock
+package-lock.json
+.claude

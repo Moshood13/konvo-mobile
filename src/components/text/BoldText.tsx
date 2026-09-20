@@ -14,7 +14,7 @@ export const BoldText: FC<SimpleTextProps> = ({ text, style, numberOfLines }) =>
 
 const styles = StyleSheet.create({
 	text: {
-		color: ColorTheme.text.white,
+		color: ColorTheme.text.primary,
 		fontSize: 16,
 		fontFamily: FontsConstants.brFirma.bold,
 	},

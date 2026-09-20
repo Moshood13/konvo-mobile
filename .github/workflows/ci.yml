@@ -66,10 +66,52 @@ jobs:
       - name: Run Prettier
         run: yarn prettier --check .
 
+      - name: Run tests
+        run: yarn test --ci
+
+  # There is no Cloud Functions backend on the free plan, so firestore.rules IS the
+  # authorization model. This job is the only thing that verifies it.
+  security-rules:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      # The Firestore emulator is a Java program.
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Setup Corepack + Yarn
+        run: |
+          corepack enable
+          corepack prepare yarn@4.9.4 --activate
+
+      - name: Cache Yarn
+        uses: actions/cache@v3
+        with:
+          path: .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Run security rules tests
+        run: yarn test:rules
+
   eas-build:
     if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-    needs: lint-typescript-prettier
+    needs: [lint-typescript-prettier, security-rules]
     steps:
       - name: Checkout code
         uses: actions/checkout@v3

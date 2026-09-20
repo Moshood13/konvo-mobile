@@ -97,3 +97,12 @@ coverage/
 
 android/
 ios/
+# Claude Code session settings (machine-specific permission grants)
+.claude/
+
+# Firebase emulator logs
+firestore-debug.log
+database-debug.log
+ui-debug.log
+firebase-debug.log
+.firebase/

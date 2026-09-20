@@ -5,8 +5,41 @@ export class ColorTheme {
 		backgroundColor: ColorConstants.white,
 	};
 
+	/**
+	 * `primary` is the default for every component in `src/components/text`.
+	 * These used to default to white because every screen sat on the teal auth
+	 * background; chat screens are light, so the default is now dark and screens
+	 * on a photo/teal background opt into `inverse` explicitly.
+	 */
 	static text = {
+		primary: ColorConstants.black900,
+		secondary: ColorConstants.black50,
+		tertiary: ColorConstants.grey500,
+		inverse: ColorConstants.white,
+		brand: ColorConstants.green100,
+		danger: ColorConstants.red,
+		/** @deprecated Use `inverse`. Kept so existing call sites keep compiling. */
 		white: ColorConstants.white,
+	};
+
+	static chat = {
+		screenBackground: ColorConstants.grey100,
+		bubbleOut: ColorConstants.green25,
+		bubbleIn: ColorConstants.white,
+		bubbleBorder: "rgba(0,0,0,0.04)",
+		composerBackground: ColorConstants.white,
+		composerField: ColorConstants.grey50,
+		tickUnread: ColorConstants.grey300,
+		tickRead: ColorConstants.tickBlue,
+		tickPending: ColorConstants.grey500,
+		tickFailed: ColorConstants.red,
+		dateChipBackground: "rgba(0,0,0,0.06)",
+		dateChipText: ColorConstants.black50,
+		unreadBadge: ColorConstants.green100,
+		separator: ColorConstants.grey50,
+		systemMessageBackground: "rgba(0,0,0,0.05)",
+		quoteBar: ColorConstants.green100,
+		quoteBackground: "rgba(0,0,0,0.04)",
 	};
 
 	static icon = {

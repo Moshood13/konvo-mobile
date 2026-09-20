@@ -1,3 +1,7 @@
+// Must be the very first import: uuid v12 reads crypto.getRandomValues() at module
+// scope, and React Native has no such global until this polyfill installs it.
+import "react-native-get-random-values";
+
 import { registerRootComponent } from "expo";
 
 import App from "./App";

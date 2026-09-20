@@ -1,13 +1,13 @@
 import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack";
-import { HomeScreen } from "../screens/home/HomeScreen";
+import { ChatListScreen } from "../screens";
 
 export type AuthorizedStackParamList = {
-	HomeScreen: undefined;
+	ChatListScreen: undefined;
 };
 
-export type HomeScreenNavigationProps = NativeStackScreenProps<
+export type ChatListScreenNavigationProps = NativeStackScreenProps<
 	AuthorizedStackParamList,
-	"HomeScreen"
+	"ChatListScreen"
 >;
 
 const AuthorizedStack = createNativeStackNavigator<AuthorizedStackParamList>();
@@ -17,9 +17,9 @@ export const AuthorizedStackNavigation = () => {
 		<AuthorizedStack.Navigator
 			id={null}
 			screenOptions={{ headerShown: false }}
-			initialRouteName="HomeScreen"
+			initialRouteName="ChatListScreen"
 		>
-			<AuthorizedStack.Screen name="HomeScreen" component={HomeScreen} />
+			<AuthorizedStack.Screen name="ChatListScreen" component={ChatListScreen} />
 		</AuthorizedStack.Navigator>
 	);
 };

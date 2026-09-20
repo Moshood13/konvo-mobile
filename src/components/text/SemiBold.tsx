@@ -14,7 +14,7 @@ export const SemiboldText: React.FC<SimpleTextProps> = ({ text, style, numberOfL
 
 const styles = StyleSheet.create({
 	text: {
-		color: ColorTheme.text.white,
+		color: ColorTheme.text.primary,
 		fontSize: 16,
 		fontFamily: FontsConstants.brFirma.semiBold,
 	},

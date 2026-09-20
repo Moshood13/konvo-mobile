@@ -14,7 +14,7 @@ export const MediumText: React.FC<SimpleTextProps> = ({ text, style, numberOfLin
 
 const styles = StyleSheet.create({
 	text: {
-		color: ColorTheme.text.white,
+		color: ColorTheme.text.primary,
 		fontSize: 14,
 		fontFamily: FontsConstants.brFirma.medium,
 	},

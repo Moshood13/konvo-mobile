@@ -1,0 +1,284 @@
+rules_version = '2';
+
+// Konvo Firestore security rules.
+//
+// THERE IS NO SERVER. The project runs on the free Spark plan, which does not include
+// Cloud Functions, so there is no privileged writer. Everything a callable or trigger
+// would have done is a batched client write, and these rules are the ENTIRE
+// authorization model. Treat every relaxation here as a real decision.
+//
+// Two structural choices are load-bearing:
+//
+//  1. MEMBERSHIP LIVES ON THE CONVERSATION DOCUMENT (memberIds / admins), not in a
+//     subcollection. Firestore evaluates each write in a batch against the state of
+//     the database BEFORE the batch, so a rule on a child document cannot check that
+//     its parent conversation exists and contains the writer — the parent is not
+//     committed yet. Gating that with `!exists(parent) || isMember(...)` would let
+//     anyone pre-seed themselves into a conversation that does not exist yet, and
+//     direct-conversation ids are deterministic (dm_<sorted uids>), so an attacker
+//     could squat on two specific people's future DM and read it. Keeping membership
+//     on the parent removes the ordering problem entirely.
+//
+//     Consequence for clients: create the conversation document FIRST, then write
+//     receipts and inbox documents in a second batch. Not atomic, but a failure
+//     leaves an empty conversation, which is harmless and self-healing.
+//
+//  2. Unread counts live on users/{uid}/conversations/{cid}, not as a map on the
+//     shared conversation document, because diff().affectedKeys() reports only the
+//     top-level map key — there would be no way to stop member A rewriting member B's
+//     counter inside a map.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------- helpers ----------
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function uid() {
+      return request.auth.uid;
+    }
+
+    function isSelf(userId) {
+      return signedIn() && uid() == userId;
+    }
+
+    function convPath(cid) {
+      return /databases/$(database)/documents/conversations/$(cid);
+    }
+
+    // get() and exists() on the same path are cached within a single rule
+    // evaluation, so this pair costs one document read, not two. Firestore evaluates
+    // rules once per query rather than per returned document, so a 30-message page
+    // pays for one of these.
+    function conv(cid) {
+      return get(convPath(cid)).data;
+    }
+
+    function isMember(cid) {
+      return signedIn() && exists(convPath(cid)) && uid() in conv(cid).memberIds;
+    }
+
+    function isAdmin(cid) {
+      return signedIn() && exists(convPath(cid)) && uid() in conv(cid).admins;
+    }
+
+    function unchanged(field) {
+      return request.resource.data[field] == resource.data[field];
+    }
+
+    function affected() {
+      return request.resource.data.diff(resource.data).affectedKeys();
+    }
+
+    function touchedOnly(keys) {
+      return affected().hasOnly(keys);
+    }
+
+    // A direct conversation's id must be exactly dm_<lower uid>_<higher uid>. This is
+    // what stops someone creating "dm_alice_bob" with themselves inside it: the id
+    // pins the membership, and the membership pins the id.
+    function directIdMatches(cid, ids) {
+      return ids.size() == 2
+        && ids[0] < ids[1]
+        && cid == 'dm_' + ids[0] + '_' + ids[1];
+    }
+
+    function validMembership(data) {
+      return data.memberIds is list
+        && data.memberCount == data.memberIds.size()
+        && data.memberCount >= 2
+        // Capped at 20, not 256: with no server the sender's device fans out to every
+        // member, so each group message costs memberCount + 2 writes against Spark's
+        // 20k/day write quota.
+        && data.memberCount <= 20
+        && data.admins is list
+        && data.admins.hasOnly(data.memberIds);
+    }
+
+    // ---------- users ----------
+
+    match /users/{userId} {
+      // Readable by any signed-in user: chat headers, group member lists and contact
+      // discovery all need it. Nothing sensitive is stored in the clear — phoneE164 is
+      // the user's own shared contact detail and phoneHash is a one-way hash.
+      allow read: if signedIn();
+
+      allow create: if isSelf(userId)
+        && request.resource.data.uid == userId
+        && request.resource.data.profileComplete == false;
+
+      // Note the .get(field, default) calls. Reading a property that is absent from
+      // the document throws and denies the whole write, so a profile saved before a
+      // field existed could never be updated again. .get() is the safe accessor.
+      allow update: if isSelf(userId)
+        && unchanged('uid')
+        && unchanged('createdAt')
+        && request.resource.data.get('displayName', '') is string
+        && request.resource.data.get('displayName', '').size() >= 1
+        && request.resource.data.get('displayName', '').size() <= 50
+        && (
+          request.resource.data.get('about', '') == null
+          || request.resource.data.get('about', '').size() <= 160
+        );
+
+      allow delete: if false;
+
+      // Push tokens. Nothing sends pushes yet — that needs a server — but the shape is
+      // here so adding a sender later requires no migration.
+      match /devices/{deviceId} {
+        allow read, write: if isSelf(userId);
+      }
+
+      // The per-user chat index that drives the chat list.
+      match /conversations/{cid} {
+        // Private: only you ever read your own inbox.
+        allow read: if isSelf(userId);
+        allow delete: if isSelf(userId);
+
+        // (a) The owner managing their own row: per-chat preferences, clearing their
+        //     badge, and stamping their own row when they are the one sending. May
+        //     only ever zero unreadCount, never inflate it.
+        allow update: if isSelf(userId)
+          && touchedOnly([
+            'unreadCount', 'lastReadAt', 'mutedUntil', 'pinned', 'archived', 'clearedBefore',
+            'lastMessage', 'updatedAt', 'title', 'photoUrl', 'active'
+          ])
+          && (!('unreadCount' in affected()) || request.resource.data.unreadCount == 0);
+
+        // (b) A fellow member delivering a message. With Cloud Functions this was an
+        //     Admin-privileged write and the client rule was `create: false`. Without a
+        //     server the sender's own device must do the fanout.
+        //
+        //     `userId != uid()` matters: without it this branch would also match the
+        //     owner and silently defeat the unreadCount == 0 constraint in (a).
+        //
+        //     ACCEPTED RISK: someone already in a conversation with you can set your
+        //     unread badge FOR THAT CONVERSATION to an arbitrary number. They cannot
+        //     read your inbox, change your preferences, see your other chats, or touch
+        //     a conversation they are not in. A nuisance, not a leak.
+        allow create: if isMember(cid)
+          && request.resource.data.conversationId == cid
+          && request.resource.data.unreadCount is int
+          && request.resource.data.unreadCount >= 0
+          && (userId != uid() || request.resource.data.unreadCount == 0);
+
+        allow update: if isMember(cid)
+          && userId != uid()
+          && touchedOnly(['lastMessage', 'updatedAt', 'unreadCount', 'title', 'photoUrl', 'active']);
+      }
+    }
+
+    // ---------- conversations ----------
+
+    match /conversations/{cid} {
+      allow read: if isMember(cid);
+
+      allow create: if signedIn()
+        && request.resource.data.createdBy == uid()
+        && uid() in request.resource.data.memberIds
+        && validMembership(request.resource.data)
+        && request.resource.data.lastMessage == null
+        && (
+          // A direct conversation has no admins and a membership-derived id.
+          ( request.resource.data.type == 'direct'
+            && request.resource.data.admins.size() == 0
+            && directIdMatches(cid, request.resource.data.memberIds) )
+          ||
+          // A group's creator is an admin. Its id is a random uuid, so there is
+          // nothing to squat on.
+          ( request.resource.data.type == 'group'
+            && uid() in request.resource.data.admins )
+        );
+
+      allow update: if (
+        // (a) The message fanout: any member stamps the new last message.
+        ( isMember(cid) && touchedOnly(['lastMessage', 'updatedAt']) )
+        ||
+        // (b) Group metadata: admins only.
+        ( isAdmin(cid)
+          && resource.data.type == 'group'
+          && touchedOnly(['name', 'photoUrl', 'updatedAt'])
+          && (request.resource.data.name == null || request.resource.data.name.size() <= 60) )
+        ||
+        // (c) Membership changes: admins only, and the shape must stay coherent.
+        ( isAdmin(cid)
+          && resource.data.type == 'group'
+          && touchedOnly(['memberIds', 'memberCount', 'admins', 'updatedAt'])
+          && validMembership(request.resource.data)
+          // An admin cannot strip every admin and orphan the group.
+          && request.resource.data.admins.size() >= 1 )
+        ||
+        // (d) Leaving a group: remove yourself and nobody else.
+        ( isMember(cid)
+          && resource.data.type == 'group'
+          && touchedOnly(['memberIds', 'memberCount', 'admins', 'updatedAt'])
+          && request.resource.data.memberIds == resource.data.memberIds.removeAll([uid()])
+          && request.resource.data.admins == resource.data.admins.removeAll([uid()])
+          && request.resource.data.memberCount == request.resource.data.memberIds.size() )
+      );
+
+      allow delete: if false;
+
+      match /receipts/{receiptUid} {
+        // Every member reads every member's pointers — this is what makes group read
+        // receipts and the Message Info screen work without per-message writes.
+        allow read: if isMember(cid);
+        // Only ever your own, and only once the conversation exists. Each client
+        // creates its own receipt lazily when it first opens the chat.
+        allow create, update: if isMember(cid) && isSelf(receiptUid);
+        allow delete: if false;
+      }
+
+      match /messages/{mid} {
+        allow read: if isMember(cid);
+
+        allow create: if isMember(cid)
+          && request.resource.data.senderId == uid()
+          && request.resource.data.id == mid
+          // Forces serverTimestamp(); a client cannot backdate or postdate a message.
+          && request.resource.data.createdAt == request.time
+          && request.resource.data.deletedForEveryone == false
+          && request.resource.data.deletedFor.size() == 0
+          && (
+            ( request.resource.data.type in ['text', 'image']
+              && request.resource.data.system == null )
+            ||
+            // System messages ("X added Y") accompany a membership change, so only an
+            // admin can emit one.
+            ( request.resource.data.type == 'system' && isAdmin(cid) )
+          )
+          && (request.resource.data.text == null || request.resource.data.text.size() <= 4096);
+
+        allow update: if isMember(cid) && (
+          // (a) Anyone in the room may hide a message for themselves — and for nobody
+          // else. The set arithmetic pins the added element to exactly their own uid.
+          (
+            touchedOnly(['deletedFor'])
+            && request.resource.data.deletedFor.hasAll(resource.data.deletedFor)
+            && request.resource.data.deletedFor.removeAll(resource.data.deletedFor) == [uid()]
+          )
+          ||
+          // (b) The sender may retract it, within one hour of sending.
+          (
+            resource.data.senderId == uid()
+            && resource.data.deletedForEveryone == false
+            && request.time < resource.data.createdAt + duration.value(1, 'h')
+            && touchedOnly(['deletedForEveryone', 'deletedForEveryoneAt', 'text', 'image'])
+            && request.resource.data.deletedForEveryone == true
+            && request.resource.data.text == null
+            && request.resource.data.image == null
+          )
+        );
+
+        // Tombstones only. A hard delete would leave the conversation's lastMessage
+        // pointing at a document that no longer exists.
+        allow delete: if false;
+      }
+    }
+
+    match /{document=**} { allow read, write: if false; }
+  }
+}

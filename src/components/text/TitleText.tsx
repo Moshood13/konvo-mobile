@@ -11,7 +11,7 @@ export const TitleText: FC<SimpleTextProps> = ({ text, style }) => {
 const styles = StyleSheet.create({
 	title: {
 		fontFamily: FontsConstants.brFirma.semiBold,
-		color: ColorTheme.text.white,
+		color: ColorTheme.text.primary,
 		fontSize: 24,
 	},
 });

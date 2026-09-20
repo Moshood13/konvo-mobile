@@ -1,0 +1,24 @@
+# The repo previously stored CRLF, while .prettierrc pins endOfLine: "lf" — so
+# `prettier --check .` failed for every file, in CI as well as locally. Normalise
+# text files to LF in the repository; Git still checks them out with native line
+# endings on Windows where core.autocrlf is on.
+* text=auto eol=lf
+
+# Binary assets must never be line-ending converted.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.keystore binary
+*.jks binary
+*.p8 binary
+*.p12 binary
+*.mobileprovision binary
+
+# Generated; keep it out of diffs and merge conflicts.
+yarn.lock linguist-generated=true
