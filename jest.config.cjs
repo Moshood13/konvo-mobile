@@ -18,16 +18,21 @@ module.exports = {
 		"!<rootDir>/src/**/index.ts",
 		"!<rootDir>/__tests__/**/*.{ts,tsx}",
 	],
-	// Starts at the level Phase 0 actually reaches. The previous 80% was aspirational
-	// against a suite that could not run at all, which is worse than no threshold —
-	// it never failed, because `yarn test` was a stub that echoed and exited 0.
-	// Raise these numbers as each phase lands its tests.
+	// A ratchet, not a target: set just under what the suite currently achieves, so
+	// adding untested code fails the build instead of quietly diluting the number.
+	// Raise these each time a phase lands its tests. Never lower them to make a red
+	// build pass — that is how the previous 80% ended up meaningless (it never ran,
+	// because `yarn test` was a stub that echoed and exited 0).
+	//
+	// Much of the remaining uncovered code is Firebase listeners and screens, which
+	// are covered by the emulator rules suite and by manual device testing rather
+	// than by unit tests.
 	coverageThreshold: {
 		global: {
-			branches: 2,
-			functions: 3,
-			lines: 10,
-			statements: 10,
+			branches: 6,
+			functions: 15,
+			lines: 17,
+			statements: 17,
 		},
 	},
 	moduleNameMapper: {

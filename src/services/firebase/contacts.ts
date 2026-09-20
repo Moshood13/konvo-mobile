@@ -7,13 +7,24 @@ import { parsePhoneNumberFromString } from "libphonenumber-js";
  *
  * `defaultCountry` lets a user type a local number without the country code; it is
  * ignored when the input already starts with "+".
+ *
+ * Deliberately gated on `isPossible()` rather than `isValid()`, and this must stay in
+ * step with `isPossiblePhoneNumber` in the profile-setup schema — if the two disagree,
+ * a number passes field validation and is then rejected on submit, with nothing the
+ * user can do about it.
+ *
+ * `isValid()` checks the number against known allocated ranges, and that metadata
+ * lags real-world allocations, so it produces false negatives for legitimately issued
+ * numbers. The failure modes are not symmetric: wrongly rejecting a real number blocks
+ * onboarding completely, while wrongly accepting a well-formed but unallocated one
+ * just means contact discovery never matches it.
  */
 export const toE164 = (input: string, defaultCountry?: string): string | null => {
 	const parsed = parsePhoneNumberFromString(
 		input.trim(),
 		defaultCountry as Parameters<typeof parsePhoneNumberFromString>[1],
 	);
-	return parsed?.isValid() ? parsed.number : null;
+	return parsed?.isPossible() ? parsed.number : null;
 };
 
 /**
